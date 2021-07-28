@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  .text-center{
+    color: #17a2b8;
+    margin: 0px;
+  }
+  h3.text-center{
+    font-size: 2em  !important;
+    margin-bottom: 20px;
+  }
+
+
+
+</style>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-5 col-md-8">
+            <form class="bg-white  rounded-5 shadow-5-strong p-5">
+                <h3 class="text-center ">Login </h3>
+                <!-- Username input -->
+                <div class="form-outline mb-4">
+                    <input class="form-control" id="username" required type="text"/>
+                    <label class="form-label" for="username">Username</label>
+                </div>
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input class="form-control" id="password" required type="password"/>
+                    <label class="form-label" for="password">Password</label>
+                </div>
+                <!-- 2 column grid layout for inline styling -->
+                <div class="row mb-4">
+                    <div class="col d-flex justify-content-center">
+                        <!-- Checkbox -->
+                        <div class="form-check">
+                            <input checked class="form-check-input" id="form1Example3" type="checkbox"
+                                   value=""/>
+                            <label class="form-check-label" for="form1Example3">
+                                Remember me
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col text-center">
+                        <a href="{%url 'forget'%}">Forgot password?</a>
+                    </div>
+                </div>
+                <!-- Submit button -->
+                <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

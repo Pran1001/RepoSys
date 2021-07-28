@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,600&display=swap");
+
+:root {
+  --hero-gap: 60px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: calc(0.5rem + 8vmin);
+  font-weight: 600;
+  font-style: italic;
+}
+
+h2 {
+  font-size: calc(0.8rem + 4vmin);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+
+
+.parallax-wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  perspective: 10px;
+}
+
+.parallax-content {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - var(--hero-gap));
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    object-fit: cover;
+    z-index: 1;
+    transform: translateZ(1px);
+  }
+
+  .hero__title {
+    color: white;
+    z-index: 2;
+    text-align: center;
+    transform: translateZ(-2px) scale(1.2);
+
+
+
+    a {
+      color: white;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: 0 100%;
+    transform: translateZ(8px);
+    pointer-events: none;
+    background-image: linear-gradient(
+      to bottom,
+      hsla(0, 0%, 0%, 0) 0%,
+      hsla(0, 0%, 0%, 0.013) 8%,
+      hsla(0, 0%, 0%, 0.049) 14.8%,
+      hsla(0, 0%, 0%, 0.104) 20.8%,
+      hsla(0, 0%, 0%, 0.175) 26%,
+      hsla(0, 0%, 0%, 0.259) 30.8%,
+      hsla(0, 0%, 0%, 0.352) 35.3%,
+      hsla(0, 0%, 0%, 0.45) 39.8%,
+      hsla(0, 0%, 0%, 0.55) 44.5%,
+      hsla(0, 0%, 0%, 0.648) 49.5%,
+      hsla(0, 0%, 0%, 0.741) 55.2%,
+      hsla(0, 0%, 0%, 0.825) 61.7%,
+      hsla(0, 0%, 0%, 0.896) 69.2%,
+      hsla(0, 0%, 0%, 0.951) 77.9%,
+      hsla(0, 0%, 0%, 0.987) 88.1%,
+      hsl(0, 0%, 0%) 100%
+    );
+    z-index: 3;
+  }
+}
+
+.main-content {
+  position: relative;
+  margin: 0 auto;
+  padding: var(--hero-gap) 2rem;
+  max-width: 725px;
+  background-color: white;
+
+  > * + * {
+    margin-top: 2rem;
+  }
+}
+
+.about{
+	cursor: pointer;
+	background-color: #1c2938 ;
+	color: #FFFFFF;
+	padding-top: 20px;
+	padding-bottom: 30px;
+}
+.about h1 {
+    color: #fff;
+	padding: 10px 0;
+	margin-bottom: 20px;
+}
+.about h2 {
+	color: #fff;
+}
+.about span {
+	display: block;
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	margin:auto;
+	border-radius:50%;
+	font-size: 40px;
+	color: #FFFFFF;
+	opacity: 0.7;
+	background-color: #FFFFFF;
+	border: 2px solid #4C0822;
+
+	webkit-transition:all .5s ease;
+ 	moz-transition:all .5s ease;
+ 	os-transition:all .5s ease;
+ 	transition:all .5s ease;
+
+}
+.about-item:hover span{
+	opacity: 1;
+	border: 2px solid #f5f5f5;
+	font-size: 42px;
+	-webkit-transform: scale(1.1,1.1) rotate(360deg) ;
+	-moz-transform: scale(1.1,1.1) rotate(360deg) ;
+	-o-transform: scale(1.1,1.1) rotate(360deg) ;
+	transform: scale(1.1,1.1) rotate(360deg) ;
+}
+.about-item:hover h2{
+	opacity: 1;
+	-webkit-transform: scale(1.1,1.1)  ;
+	-moz-transform: scale(1.1,1.1)  ;
+	-o-transform: scale(1.1,1.1)  ;
+	transform: scale(1.1,1.1) ;
+}
+.about .lead{
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.text-center h2{
+    color: #04042f;
+    font-size:1.7em;
+}
+
+
+
+
+</style>
+
+<!--<div class="parallax-wrapper">-->
+<div class="hero parallax-content"><img alt="" src="{% static 'img/home.jpg' %}"/>
+</div>
+<!--</div>-->
+
+<section class="text-center ">
+    <h2>"Only those who dare to fail greatly can ever achieve greatly.”<br>― Robert F. Kennedy
+    </h2>
+
+
+</section>
+
+<section class="text-center about">
+    <h1>About US</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn" data-wow-offset="200">
+                <span class="fa fa-group"></span>
+                <h3>Riddhi Warale</h3>
+                <p class="lead"></p>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn" data-wow-offset="200">
+                <span class="fa fa-info"></span>
+                <h3>Pranali Darekar</h3>
+                <p class="lead"></p>
+            </div>
+            <div class="clearfix visible-md-block visible-sm-block"></div>
+            <div class="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn" data-wow-offset="200">
+                <span class="fa fa-file"></span>
+                <h3>Vaishnavi Lalage</h3>
+                <p class="lead"></p>
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+
+
+<section class="text-center ">
+    <h2>
+        V-Store it : One place to Store all your Acheivements...
+    </h2>
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,125 @@
+<!Doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>V-Store it</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<section class="">
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">V-Store it!</a>
+                <button aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation"
+                        class="navbar-toggler"
+                        data-target="#ftco-nav" data-toggle="collapse" type="button">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END nav -->
+    </div>
+
+</section>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+
+{% block content %}
+
+{% endblock %}
+
+<!--Footer-->
+<footer class="bg-light text-lg-start">
+
+    <div>
+        <div class="container-fluid pb-0 mb-0 justify-content-center text-light ">
+            <footer>
+                <div class="row my-5 justify-content-left py-5">
+                    <img class="img-fluid footer_logo" src="{% static 'img/logo_vit2.png' %}">
+                    <div class="col-11">
+                        <div class="row ">
+                            <div class="col-xl-8 col-md-4 col-sm-4 col-12 my-auto mx-auto a">
+                                <h3 class="text-muted mb-md-0 mb-5 bold-text">Vidyalankar Institute of Technology is an
+                                    Engineering & Management Institute approved by AICTE, New Delhi and Government of
+                                    Maharashtra. The Institute is affiliated to University of Mumbai.</h3>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-sm-4 col-12">
+                                <!--                         <h6 class="mb-3 mb-lg-4 bold-text "><b>MENU</b></h6>-->
+                                <h6 class="mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5"><b>MENU</b></h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'register' %}">Register</a></li>
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-sm-4 col-12">
+                                <h6 class="mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5"><b>ADDRESS</b></h6>
+                                <p class="mb-1">Vidyalankar Institute of Technology,</p>
+                                <p>Vidyalankar College Marg, Wadala(E), </p>
+                                <p>Mumbai-400 037</p>
+
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-xl-8 col-md-4 col-sm-4 col-auto my-md-0 mt-5 order-sm-1 order-3 align-self-end">
+                                <p class="social text-muted mb-0 pb-0 bold-text"><span class="mx-2"><i
+                                        aria-hidden="true" class="fa fa-facebook"></i></span> <span class="mx-2"><i
+                                        aria-hidden="true" class="fa fa-linkedin-square"></i></span> <span class="mx-2"><i
+                                        aria-hidden="true" class="fa fa-twitter"></i></span> <span class="mx-2"><i
+                                        aria-hidden="true" class="fa fa-instagram"></i></span></p><small class="rights"><span>&#174;</span>
+                                All Rights Reserved.</small>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-1 align-self-end ">
+                                <h6 class="text-muted bold-text"><b>PRANALI DAREKAR</b></h6><small> <span><i
+                                    aria-hidden="true" class="fa fa-envelope"></i></span>
+                                pranali.darekar@vit.edu.in</small>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-1 align-self-end  ">
+                                <h6 class="text-muted bold-text"><b>RIDDHI WARALE</b></h6><small><span><i
+                                    aria-hidden="true" class="fa fa-envelope"></i></span>
+                                riddhi.warale@vit.edu.in</small>
+                            </div>
+                            <div class="col-xl-8 col-md-4 col-sm-4 col-auto my-md-0 mt-5 order-sm-1 order-3 align-self-end  ">
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-1 align-self-end  ">
+                                <h6 class="text-muted bold-text"><b>VAISHNAVI LALAGE</b></h6><small><span><i
+                                    aria-hidden="true" class="fa fa-envelope"></i></span>
+                                vaishnavi.lalage@vit.edu.in</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2021 Copyright:
+        <a class="text-dark" href="">StudentRepo@vit.edu.in</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!--Footer-->
+</body>
+</html>
