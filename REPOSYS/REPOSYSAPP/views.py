@@ -20,3 +20,6 @@ def about(request):
 def forget(request):
     return render(request, 'forgetpass.html')
 
+def report(request):
+    return render(request, 'report.html')
+

@@ -10,105 +10,59 @@
     font-size: 2em  !important;
     margin-bottom: 20px;
   }
-
-
-
-
 </style>
-<!--<div class="container">-->
-
-<!--            <form class="bg-white  rounded-5 shadow-5-strong p-5">-->
-<!--                <h3 class="text-center ">Register</h3>-->
-<!--                &lt;!&ndash; 2 column grid layout for inline styling &ndash;&gt;-->
-<!--                    <div class="col d-flex justify-content-center">-->
-<!--                        <form>-->
-<!--                            <div class="mb-4">-->
-<!--                                <label class="form-label" for="branch">Branch:</label>-->
-<!--                                <input class="form-control" id="branch" type="text">-->
-<!--                            </div>-->
-<!--                            <div class="mb-4">-->
-<!--                                <label class="form-label" for="rollno">Roll No:</label>-->
-<!--                                <input class="form-control" id="rollno" type="text">-->
-<!--                            </div>-->
-<!--                            <div class="mb-4">-->
-<!--                                <label class="form-label" for="username">Username</label>-->
-<!--                                <input class="form-control" id="username" placeholder="username will be roll no"-->
-<!--                                       type="text">-->
-<!--                            </div>-->
-<!--                            <div class="mb-4">-->
-<!--                                <label class="form-label" for="email">Email address</label>-->
-<!--                                <input aria-describedby="emailHelp" class="form-control" id="email" type="email">-->
-<!--                                <div class="form-text" id="emailHelp">We'll never share your email with anyone else.-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <label class="form-label" for="password">Password</label>-->
-<!--                            <input aria-describedby="passwordHelp" class="form-control" id="password" type="password">-->
-<!--                            <div class="form-text" id="passwordHelp">-->
-<!--                                Your password must be 8-20 characters long, contain letters and numbers, and must not-->
-<!--                                contain spaces, special characters, or emoji.-->
-<!--                            </div>-->
-<!--                            <label class="form-label" for="confirmpassword">Confirm Password</label>-->
-<!--                            <input class="form-control" id="confirmpassword" type="password">-->
-
-<!--                        </form>-->
-<!--                        &lt;!&ndash; Submit button &ndash;&gt;-->
-<!--                            <button class="btn btn-primary btn-block" type="submit">Register</button>-->
-<!--                    </div>-->
-
-<!--            </form>-->
-<!--        </div>-->
-
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-xl-11 col-md-8">
+        <div class="col-xl-10 col-md-8">
             <form class="bg-white  rounded-5 shadow-5-strong p-5">
-                <h3 class="text-center ">Registration</h3>
+                <h3 class="text-center ">Registration</h3><hr>
                 <div class="row mb-4">
                     <div class="col">
                         <!-- Firstname input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="fullname" type="text" required/>
+                            <input class="form-control" id="fullname" required type="text"/>
                             <label class="form-label" for="fullname">Full Name</label>
                         </div>
                         <!-- Rollno input -->
                         <div class="form-outline mb-4">
-                            <input type="text" class="form-control" id="rollno"  required>
-                            <label for="rollno" class="form-label">Roll No:</label>
-                        </div >
+                            <input class="form-control" id="rollno" required type="text">
+                            <label class="form-label" for="rollno">Roll No:</label>
+                        </div>
                         <!-- Email Input-->
                         <div class="form-outline mb-4">
-		                    <input type="email" class="form-control" id="email"  required/>
-                            <label for="email" class="form-label">Email address</label>
+                            <input class="form-control" id="email" required type="email"/>
+                            <label class="form-label" for="email">Email address</label>
                         </div>
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="password" type="password" required/>
+                            <input class="form-control" id="password" required type="password"/>
                             <label class="form-label" for="password">Password</label>
-                            <div id="passwordHelp" class="form-text">
-                                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                            <div class="form-text" id="passwordHelp">
+                                Your password must be 8-20 characters long, contain letters and numbers, and must not
+                                contain spaces, special characters, or emoji.
                             </div>
                         </div>
                     </div>
                     <div class="col ">
                         <!-- Branch input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="branch" type="text" required/>
+                            <input class="form-control" id="branch" required type="text"/>
                             <label class="form-label" for="fullname">Branch</label>
                         </div>
                         <!-- Username input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="username" type="text" />
+                            <input class="form-control" id="username" type="text"/>
                             <label class="form-label" for="username">Username</label>
                         </div>
                         <!-- Phone Number input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="mobileno" type="text" required/>
+                            <input class="form-control" id="mobileno" required type="text"/>
                             <label class="form-label" for="mobileno">Mobile No.</label>
                         </div>
                         <!-- Confirm Password input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="confirmpassword" type="password" required/>
+                            <input class="form-control" id="confirmpassword" required type="password"/>
                             <label class="form-label" for="confirmpassword">Confirm Password</label>
                         </div>
                     </div>

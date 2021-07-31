@@ -38,7 +38,8 @@
 *::before,
 *::after {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+   }
 
 html {
   font-family: sans-serif;
@@ -187,7 +188,9 @@ th {
 
 label {
   display: inline-block;
-  margin-bottom: 0.5rem; }
+  margin-bottom: 0.5rem;
+
+  }
 
 button {
   border-radius: 0; }
@@ -353,7 +356,10 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1); }
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  height: 5px;
+  color: #050448;
+  }
 
 small,
 .small {
@@ -451,13 +457,13 @@ pre {
   width: 100%; }
   @media (min-width: 576px) {
     .container {
-      max-width: 540px; } }
+      max-width: 740px; } }
   @media (min-width: 768px) {
     .container {
-      max-width: 720px; } }
+      max-width: 900px; } }
   @media (min-width: 992px) {
     .container {
-      max-width: 960px; } }
+      max-width: 1060px; } }
   @media (min-width: 1200px) {
     .container {
       max-width: 1345px;
@@ -8135,12 +8141,13 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Poppins",  sans-serif;
   font-size: 16px;
   line-height: 1.8;
   font-weight: normal;
   background: #fafafa;
-  color: gray; }
+  color: gray;
+   }
 
 a {
   -webkit-transition: .3s all ease;

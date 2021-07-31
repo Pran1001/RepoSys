@@ -10,6 +10,37 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
 
+<style>
+  .text-center{
+    color: #17a2b8;
+    margin: 0px;
+  }
+  h3.text-center{
+    font-size: 2em  !important;
+    margin-bottom: 20px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
 <body>
 <section class="">
 
@@ -24,7 +55,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#profile">Profile Details</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#education">Educational Details</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#certificate">Certificates</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Logout</a></li>
                     </ul>
@@ -43,6 +76,276 @@
 
 
 {% block content %}
+
+<script>
+var stateObject = {
+"India": { "Delhi": ["new Delhi", "North Delhi"],
+"Kerala": ["Thiruvananthapuram", "Palakkad"],
+"Goa": ["North Goa", "South Goa"],
+},
+
+window.onload = function () {
+var countySel = document.getElementById("countySel"),
+stateSel = document.getElementById("stateSel"),
+districtSel = document.getElementById("districtSel");
+for (var country in stateObject) {
+countySel.options[countySel.options.length] = new Option(country, country);
+}
+countySel.onchange = function () {
+stateSel.length = 1; // remove all options bar first
+districtSel.length = 1; // remove all options bar first
+if (this.selectedIndex < 1) return; // done
+for (var state in stateObject[this.value]) {
+stateSel.options[stateSel.options.length] = new Option(state, state);
+}
+}
+countySel.onchange(); // reset in case page is reloaded
+stateSel.onchange = function () {
+districtSel.length = 1; // remove all options bar first
+if (this.selectedIndex < 1) return; // done
+var district = stateObject[countySel.value][this.value];
+for (var i = 0; i < district.length; i++) {
+districtSel.options[districtSel.options.length] = new Option(district[i], district[i]);
+}
+}
+}
+
+
+
+
+</script>
+
+
+<div class="container" id="profile">
+    <div class="row justify-content-center">
+        <div class="col-xl-12 col-md-8">
+            <form class="bg-white  rounded-5 shadow-5-strong p-5">
+                <h3 class="text-center ">Profile Details</h3>
+                <hr>
+                <div class="row mb-4">
+                    <div class="col-5">
+
+                    </div>
+                    <div class="col">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="education">
+    <div class="row justify-content-center">
+        <div class="col-xl-12 col-md-8">
+            <form class="bg-white  rounded-5 shadow-5-strong p-5">
+                <h3 class="text-center ">Education Details</h3>
+                <hr>
+                <div class="row mb-4">
+                    <div class="col">
+                        <!-- Qualification Level input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="qua_level">Qualification Level</label>
+                            <select class="form-control" id="qua_level">
+                                <option value="0">--Select--</option>
+                                <option value="1">F.Y.J.C.(11 Std)</option>
+                                <option value="2">S.Y.J.C.(11 Std)</option>
+                                <option value="3">Under Graduate Course</option>
+                                <option value="4">Post Graduate Course</option>
+                                <option value="5">S.S.C.(10 Std)</option>
+                                <option value="6">Vocational Course</option>
+                                <option value="7">Certificate Course</option>
+                                <option value="8">Diploma Course</option>
+                            </select>
+                        </div>
+                        <!-- Institute State input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="ins_state">Institute State</label>
+                            <select class="form-control" id="ins_state">
+                                <option value="0">--Select--</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                <option value="Daman and Diu">Daman and Diu</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                                <option value="Puducherry">Puducherry</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                            </select>
+                        </div>
+                        <!-- College Name input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="school_name">College Name/School Name</label>
+                            <input class="form-control" id="school_name" required type="text">
+                        </div>
+                        <!-- Mode input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="mode">Mode</label>
+                            <select class="form-control" id="mode">
+                                <option value="0">--Select--</option>
+                                <option value="1">Regular</option>
+                                <option value="2">Distance/Correspondence</option>
+                            </select>
+                        </div>
+                        <!-- No. of attempts input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="attempts">Attempts</label>
+                            <input class="form-control" id="attempts" required type="number">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Stream input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="stream">Stream</label>
+                            <select class="form-control" id="stream">
+                                <option value="0">--Select--</option>
+                                <option value="1">SSC</option>
+                                <option value="2">Science</option>
+                                <option value="2">Engineering</option>
+                            </select>
+                        </div>
+                        <!-- Institute District input -->
+                        <div class="form-outline mb-4">
+                            <label for="district">Institute District</label>
+                            <select class="form-control" id="district">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <!-- Course Name input -->
+                        <div class="form-outline mb-4">
+                            <label for="course_name">Institute District</label>
+                            <select class="form-control" id="course_name">
+                                <option value="0">--Select--</option>
+                                <option value="1">S.S.C.(10 Std)</option>
+                                <option value="1">H.S.C.(12 Std)</option>
+                                <option value="1">Bachelor of Engineering(B.E.)-Biomedical Engineering(UnAided)</option>
+                                <option value="2">Bachelor of Engineering(B.E.)-Computer Engineering(UnAided)</option>
+                                <option value="3">Bachelor of Engineering(B.E.)-Electronics Engineering(UnAided)
+                                </option>
+                                <option value="4">Bachelor of Engineering(B.E.)-Information Technology(UnAided)</option>
+                                <option value="5">Bachelor of Engineering(B.E.)-Electronics & Telecommunication
+                                    Engineering(UnAided)
+                                </option>
+                                <option value="6">Management Studies</option>
+                            </select>
+                        </div>
+                        <!-- Addmission Year input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="add_year">Addmission Year</label>
+                            <input class="form-control" id="add_year" required type="date">
+                        </div>
+                        <!-- Result input -->
+                        <div class="form-outline mb-4">
+                            <label for="result">Result</label>
+                            <select class="form-control" id="result">
+                                <option value="0">--Select--</option>
+                                <option value="1">Passed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Completed/Pursuing input -->
+                        <div class="form-outline mb-4">
+                            <label for="completed">Completed</label>
+                            <select class="form-control" id="completed">
+                                <option value="0">--Select--</option>
+                                <option value="1">Completed</option>
+                                <option value="2">Pursuing</option>
+                            </select>
+                        </div>
+                        <!-- Institute Taluka input -->
+                        <div class="form-outline mb-4">
+                            <label for="taluka">Institute Taluka</label>
+                            <select class="form-control" id="taluka">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <!-- Qualification Level input -->
+                        <div class="form-outline mb-4">
+                            <label for="board_uni">Board/University</label>
+                            <select class="form-control" id="board_uni">
+                                <option value="0">--Select--</option>
+                                <option value="1">Maharashtra Board</option>
+                                <option value="2">Mumbai University</option>
+                            </select>
+                        </div>
+                        <!-- Passing Year input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="pass_year">Passing Year</label>
+                            <input class="form-control" id="pass_year" required type="date">
+                        </div>
+                        <!-- Percentage/CGPA input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="cgpa">Percentage/CGPA</label>
+                            <input class="form-control" id="cgpa" required type="text">
+                        </div>
+                    </div>
+                </div>
+                <!-- Upload Marksheet-->
+                <div class="row mb-4">
+                    <div class="col">
+                        <label class="form-label" for="marksheet">Upload Marksheet</label>
+                        <input class="form-control" id="marksheet" type="file">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <!-- Save button -->
+                        <button class="btn btn-primary btn-block" type="button">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="certificate">
+    <div class="row justify-content-center">
+        <div class="col-xl-12 col-md-8">
+            <form class="bg-white  rounded-5 shadow-5-strong p-5">
+                <h3 class="text-center ">Certificates</h3>
+                <hr>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}
 
