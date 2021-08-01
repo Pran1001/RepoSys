@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  .text-center{
+    color: #17a2b8;
+    margin: 0px;
+  }
+  h3.text-center{
+    font-size: 2em  !important;
+    margin-bottom: 20px;
+  }
+
+
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-12 col-md-8">
+            <form class="bg-white  rounded-5 shadow-5-strong p-5">
+                <h3 class="text-center ">Report Generation</h3>
+                <hr>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Branch</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-6">
+                            <input class="form-check-input" id="inft" type="checkbox" value="Information Technology">
+                            <label class="form-check-label" for="inft">Information Technology</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="form-check-input" id="cmpn" type="checkbox" value="Computer Engineering">
+                            <label class="form-check-label" for="cmpn">Computer Engineering</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="form-check-input" id="extc" type="checkbox" value="Electronics and Telecommunication Engineering">
+                            <label class="form-check-label" for="extc">Electronics and Telecommunication Engineering</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="form-check-input" id="etrx" type="checkbox" value="Electronics Engineering">
+                            <label class="form-check-label" for="etrx">Electronics Engineering</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="form-check-input" id="biom" type="checkbox" value="Biomedical Engineering">
+                            <label class="form-check-label" for="biom">Biomedical Engineering</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="form-check-input" id="manage" type="checkbox" value="Management Studies">
+                            <label class="form-check-label" for="manage">Management Studies</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
