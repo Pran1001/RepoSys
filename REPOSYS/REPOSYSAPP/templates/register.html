@@ -22,27 +22,27 @@
                     <div class="col">
                         <!-- Firstname input -->
                         <div class="form-outline mb-4">
-                            {{form.full_name}}
-<!--                            <input class="form-control" id="fullname" required type="text"/>-->
-                            <label class="form-label" for="fullname">Full Name</label>
+<!--                            {{form.full_name}}-->
+                            <input class="form-control" type="text" name="full_name" maxlength="225" required="" id="id_full_name">
+                            <label class="form-label" >Full Name</label>
                         </div>
                         <!-- Rollno input -->
                         <div class="form-outline mb-4">
-                            {{form.roll_no}}
-<!--                            <input class="form-control" id="rollno" required type="text">-->
-                            <label class="form-label" for="rollno">Roll No:</label>
+<!--                            {{form.roll_no}}-->
+                            <input class="form-control" type="text" name="roll_no" maxlength="225" required="" id="id_roll_no">
+                            <label class="form-label" >Roll No</label>
                         </div>
                         <!-- Email Input-->
                         <div class="form-outline mb-4">
-                            {{form.email}}
-<!--                            <input class="form-control" id="email" required type="email"/>-->
-                            <label class="form-label" for="email">Email address</label>
+<!--                            {{form.email}}-->
+                            <input class="form-control" type="email" name="email" maxlength="225" required="" id="id_email">
+                            <label class="form-label" >Email address</label>
                         </div>
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            {{user_form.password1}}
-<!--                            <input class="form-control" id="password" required type="password"/>-->
-                            <label class="form-label" for="password">Password</label>
+<!--                            {{user_form.password1}}-->
+                            <input class="form-control"type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+                            <label class="form-label" >Password</label>
                             <div class="form-text" id="passwordHelp">
                                 Your password must be 8-20 characters long, contain letters and numbers, and must not
                                 contain spaces, special characters, or emoji.
@@ -52,33 +52,30 @@
                     <div class="col ">
                         <!-- Branch input -->
                         <div class="form-outline mb-4">
-                            {{form.branch}}
-<!--                            <input class="form-control" id="branch" required type="text"/>-->
-                            <label class="form-label" for="fullname">Branch</label>
+<!--                            {{form.branch}}-->
+                            <input class="form-control" type="text" name="branch" maxlength="225" required="" id="id_branch">
+                            <label class="form-label" >Branch</label>
                         </div>
                         <!-- Username input -->
                         <div class="form-outline mb-4" id="name">
-                            {{user_form.username}}
-<!--                            <input class="form-control" id="username" type="text"/>-->
-                            <label class="form-label" for="username">Username</label>
+<!--                            {{user_form.username}}-->
+                            <input class="form-control" type="text" name="username" placeholder="Username will be your Rollno" maxlength="150" autofocus="" required="" id="id_username" disabled>
+                            <label class="form-label" >Username</label>
                         </div>
                         <!-- Phone Number input -->
                         <div class="form-outline mb-4">
-                                 {{form.mobile}}
-<!--                            <input class="form-control" id="mobileno" required type="text"/>-->
-                            <label class="form-label" for="mobileno">Mobile No.</label>
+<!--                                 {{form.mobile}}-->
+                            <input class="form-control" type="text" name="mobile" maxlength="10" required="" id="id_mobile">
+                            <label class="form-label" >Mobile No.</label>
                         </div>
                         <!-- Confirm Password input -->
                         <div class="form-outline mb-4">
-                            {{user_form.password2}}
-<!--                            <input class="form-control" id="confirmpassword" required type="password"/>-->
-                            <label class="form-label" for="confirmpassword">Confirm Password</label>
+<!--                            {{user_form.password2}}-->
+                            <input class="form-control" type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+                            <label class="form-label" >Confirm Password</label>
                         </div>
                     </div>
                 </div>
-<!--                <div>-->
-<!--                    {{form.username}}-->
-<!--                </div>-->
                 <div class="row mb-4">
                     <a href="{%url 'login'%}">Already Registered?</a>
                 </div>
