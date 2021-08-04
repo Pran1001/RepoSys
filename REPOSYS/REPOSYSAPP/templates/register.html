@@ -15,28 +15,33 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl-10 col-md-8">
-            <form class="bg-white  rounded-5 shadow-5-strong p-5">
+            <form class="bg-white  rounded-5 shadow-5-strong p-5" action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
                 <h3 class="text-center ">Registration</h3><hr>
                 <div class="row mb-4">
                     <div class="col">
                         <!-- Firstname input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="fullname" required type="text"/>
+                            {{form.full_name}}
+<!--                            <input class="form-control" id="fullname" required type="text"/>-->
                             <label class="form-label" for="fullname">Full Name</label>
                         </div>
                         <!-- Rollno input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="rollno" required type="text">
+                            {{form.roll_no}}
+<!--                            <input class="form-control" id="rollno" required type="text">-->
                             <label class="form-label" for="rollno">Roll No:</label>
                         </div>
                         <!-- Email Input-->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="email" required type="email"/>
+                            {{form.email}}
+<!--                            <input class="form-control" id="email" required type="email"/>-->
                             <label class="form-label" for="email">Email address</label>
                         </div>
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="password" required type="password"/>
+                            {{user_form.password1}}
+<!--                            <input class="form-control" id="password" required type="password"/>-->
                             <label class="form-label" for="password">Password</label>
                             <div class="form-text" id="passwordHelp">
                                 Your password must be 8-20 characters long, contain letters and numbers, and must not
@@ -47,26 +52,33 @@
                     <div class="col ">
                         <!-- Branch input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="branch" required type="text"/>
+                            {{form.branch}}
+<!--                            <input class="form-control" id="branch" required type="text"/>-->
                             <label class="form-label" for="fullname">Branch</label>
                         </div>
                         <!-- Username input -->
-                        <div class="form-outline mb-4">
-                            <input class="form-control" id="username" type="text"/>
+                        <div class="form-outline mb-4" id="name">
+                            {{user_form.username}}
+<!--                            <input class="form-control" id="username" type="text"/>-->
                             <label class="form-label" for="username">Username</label>
                         </div>
                         <!-- Phone Number input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="mobileno" required type="text"/>
+                                 {{form.mobile}}
+<!--                            <input class="form-control" id="mobileno" required type="text"/>-->
                             <label class="form-label" for="mobileno">Mobile No.</label>
                         </div>
                         <!-- Confirm Password input -->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="confirmpassword" required type="password"/>
+                            {{user_form.password2}}
+<!--                            <input class="form-control" id="confirmpassword" required type="password"/>-->
                             <label class="form-label" for="confirmpassword">Confirm Password</label>
                         </div>
                     </div>
                 </div>
+<!--                <div>-->
+<!--                    {{form.username}}-->
+<!--                </div>-->
                 <div class="row mb-4">
                     <a href="{%url 'login'%}">Already Registered?</a>
                 </div>
@@ -77,5 +89,13 @@
     </div>
 </div>
 
+<script>
+    $("input").addClass("form-control")
+    var username = {{request.user.username}}
+    const username=$("id_full_name").val()
+    $("id_username").val()
+</script>
 
 {% endblock %}
+
+
