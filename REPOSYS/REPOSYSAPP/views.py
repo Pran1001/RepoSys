@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from .forms import StudentRegisterForm, UserForm
 from django.contrib.auth.models import User
 

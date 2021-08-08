@@ -12,12 +12,15 @@
 
 
 
+
 </style>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl-5 col-md-8">
-            <form class="bg-white  rounded-5 shadow-5-strong p-5">
-                <h3 class="text-center ">Login </h3><hr>
+            <form action="{% url 'login' %}" class="bg-white  rounded-5 shadow-5-strong p-5" method="POST">
+                <h3 class="text-center ">Login </h3>
+                <hr>
                 <!-- Username input -->
                 <div class="form-outline mb-4">
                     <input class="form-control" id="username" required type="text"/>
@@ -50,5 +53,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}

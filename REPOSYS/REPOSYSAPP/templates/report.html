@@ -9,8 +9,25 @@
     font-size: 2em  !important;
     margin-bottom: 20px;
   }
-
-
+  label{
+    font-size: 1.5em  !important;
+    margin-bottom: 20px;
+    color: #05053b;
+  }
+  .form-check-label{
+    font-size: 1.2em  !important;
+    color: #000;
+  }
+  .form-date-label{
+    font-size: 1.2em  !important;
+    color: #000;
+    padding-right: 20px;
+  }
+  .form-check-input {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: -1.25rem;
+    }
 </style>
 
 <div class="container">
@@ -20,32 +37,73 @@
                 <h3 class="text-center ">Report Generation</h3>
                 <hr>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Branch</label>
-                    <div class="col-sm-10">
-                        <div class="col-sm-6">
+                    <div class="col">
+                    <label class="col">Branch</label>
+                        <div class="col">
                             <input class="form-check-input" id="inft" type="checkbox" value="Information Technology">
                             <label class="form-check-label" for="inft">Information Technology</label>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col">
                             <input class="form-check-input" id="cmpn" type="checkbox" value="Computer Engineering">
                             <label class="form-check-label" for="cmpn">Computer Engineering</label>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col">
                             <input class="form-check-input" id="extc" type="checkbox" value="Electronics and Telecommunication Engineering">
                             <label class="form-check-label" for="extc">Electronics and Telecommunication Engineering</label>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col">
                             <input class="form-check-input" id="etrx" type="checkbox" value="Electronics Engineering">
                             <label class="form-check-label" for="etrx">Electronics Engineering</label>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col">
                             <input class="form-check-input" id="biom" type="checkbox" value="Biomedical Engineering">
                             <label class="form-check-label" for="biom">Biomedical Engineering</label>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col">
                             <input class="form-check-input" id="manage" type="checkbox" value="Management Studies">
                             <label class="form-check-label" for="manage">Management Studies</label>
                         </div>
+                    </div>
+                    <div class="col">
+                        <label class="col">Date</label>
+                        <div class="col">
+                            <label class="form-date-label" for="fromdate">From</label>
+                            <input class="form-date-input" id="fromdate" type="date">
+                        </div>
+                        <div class="col">
+                            <label class="form-date-label" for="todate">To</label>
+                            <input class="form-date-input" id="todate" type="date">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label class="col">Year</label>
+                        <div class="col">
+                            <input class="form-check-input" id="fe" type="checkbox">
+                            <label class="form-check-label" for="fe">FE</label>
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" id="se" type="checkbox">
+                            <label class="form-check-label" for="se">SE</label>
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" id="te" type="checkbox">
+                            <label class="form-check-label" for="te">TE</label>
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" id="be" type="checkbox">
+                            <label class="form-check-label" for="be">BE</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-primary btn-block" type="submit" >Clear All Filters</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary btn-block" type="submit" >Generate Report</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary btn-block" type="submit" >Generate Full Report</button>
                     </div>
                 </div>
             </form>
