@@ -9,11 +9,10 @@
     font-size: 2em  !important;
     margin-bottom: 20px;
   }
-
-
-
-
-
+  .form-label{
+    font-size: 1.2em;
+    color: #05053b;
+  }
 </style>
 
 <div class="container">
@@ -25,12 +24,12 @@
                 <hr>
                 <!-- Username input -->
                 <div class="form-outline mb-4">
-                    <input class="form-control" id="username" required type="text"/>
+                    <input class="form-control" id="username" name ="username" required type="text"/>
                     <label class="form-label" for="username">Username</label>
                 </div>
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                    <input class="form-control" id="password" required type="password"/>
+                    <input class="form-control" id="password" name="password" required type="password"/>
                     <label class="form-label" for="password">Password</label>
                 </div>
                 {% for message in messages %}

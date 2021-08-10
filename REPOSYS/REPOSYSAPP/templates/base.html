@@ -13,16 +13,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/6b2983e729.js" crossorigin="anonymous"></script>
+
 </head>
-
-
 <body>
 <section class="">
 
     <div class="container">
         <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'home' %}">V-Store it!</a>
+                <a class="navbar-brand" href="">V-Store it!</a>
                 <button aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation"
                         class="navbar-toggler"
                         data-target="#ftco-nav" data-toggle="collapse" type="button">
@@ -30,10 +29,20 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="">Hello, {{user.username}}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile Details</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'education' %}">Educational Details</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'certificates' %}">Certificates</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
