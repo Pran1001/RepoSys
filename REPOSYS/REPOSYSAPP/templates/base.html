@@ -29,7 +29,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'report' %}">Generate Report</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                        {% elif user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="">Hello, {{user.username}}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile Details</a></li>

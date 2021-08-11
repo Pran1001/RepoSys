@@ -11,7 +11,9 @@ def home(request):
     return render(request, 'home.html')
 
 def register(request):
-    if request.user.is_authenticated:
+    if request.user.is_superuser:
+        return redirect('report')
+    elif request.user.is_authenticated:
         return redirect('profile')
     else:
         form = StudentRegisterForm()
@@ -34,7 +36,9 @@ def register(request):
 
 
 def Login(request):
-    if request.user.is_authenticated:
+    if request.user.is_superuser:
+        return redirect('report')
+    elif request.user.is_authenticated:
         return redirect('profile')
     else:
         if request.method == 'POST':
@@ -45,7 +49,10 @@ def Login(request):
 
             if user is not None:
                 auth.login(request, user)
-                return redirect('profile')
+                if user.is_superuser:
+                    return redirect('report')
+                else:
+                    return redirect('profile')
             else:
                 messages.info(request, 'Invalid Credentials !!')
                 return redirect('login')
