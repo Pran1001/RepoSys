@@ -19,7 +19,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl-10 col-md-8">
-            <form class="bg-white  rounded-5 shadow-5-strong p-5" action="{% url 'register' %}" method="POST">
+            <form class="bg-white  rounded-5 shadow-5-strong p-5" action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <h3 class="text-center ">Registration</h3><hr>
                 <div class="row mb-4">
@@ -52,6 +52,10 @@
                                 contain spaces, special characters, or emoji.
                             </div>
                         </div>
+                        <p>
+                            <label >Profile Image</label>
+                            <input type="file" name="profile_image"  required="" id="id_profile_image">
+                        </p>
                     </div>
                     <div class="col ">
                         <!-- Branch input -->

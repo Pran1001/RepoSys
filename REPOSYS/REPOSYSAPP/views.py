@@ -10,7 +10,8 @@ from .models import Student
 def home(request):
     return render(request, 'home.html')
 
-def register(request):
+
+def register(request, handle_uploaded_file=None):
     if request.user.is_superuser:
         return redirect('report')
     elif request.user.is_authenticated:
@@ -20,10 +21,13 @@ def register(request):
         user_form = UserForm()
         if request.method == 'POST':
             user_form = UserForm(request.POST)
-            form = StudentRegisterForm(request.POST)
+            form = StudentRegisterForm(request.POST,request.FILES)
             if form.is_valid() and user_form.is_valid():
                 username = user_form.cleaned_data.get('username')
                 #            messages.success(request, f'Hi {username}, your account was created successfully')
+                # handle_uploaded_file(request.FILES['profile_image'])
+                # model_instance = form.save(commit=False)
+                # model_instance.save()
                 user_form.save()
                 form.save()
                 student = Student.objects.get(roll_no=username)
