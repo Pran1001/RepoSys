@@ -11,9 +11,18 @@
     margin-bottom: 20px;
   }
   .form-label{
-    font-size: 1.2em;
+    font-size: 1.5em;
     color: #05053b;
   }
+  .info-label{
+     font-size: 1em;
+     color: #1a1a6e;
+  }
+  .profile_pic{
+    width: 20em;
+  }
+
+
 
 
 </style>
@@ -26,8 +35,35 @@
                 <hr>
                 <div class="row mb-4">
                     <div class="col">
+                        <img class="profile_pic" src="{{request.user.student.profile_image.url}}">
                     </div>
                     <div class="col">
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <label class="form-label">Full Name :
+                                    <label class="info-label">{{request.user.student.first_name}}
+                                        {{request.user.student.last_name}}</label></label>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <label class="form-label">Roll No :
+                                    <label class="info-label">{{request.user.student.roll_no}}</label></label>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <label class="form-label">Branch :
+                                    <label class="info-label">{{request.user.student.branch}}</label></label>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <label class="form-label">Email :
+                                    <label class="info-label">{{request.user.student.email}}</label></label>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </form>

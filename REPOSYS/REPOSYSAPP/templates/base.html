@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/6b2983e729.js" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous" src="https://kit.fontawesome.com/6b2983e729.js"></script>
 
 </head>
 <body>
@@ -38,7 +38,8 @@
                         <li class="nav-item"><a class="nav-link" href="">Hello, {{user.username}}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile Details</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'education' %}">Educational Details</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'education' %}">Educational Details</a>
+                        </li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'certificates' %}">Certificates</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
@@ -56,7 +57,6 @@
     </div>
 
 </section>
-
 
 
 {% block content %}
