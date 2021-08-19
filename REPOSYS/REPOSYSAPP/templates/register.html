@@ -14,7 +14,9 @@
     font-size: 1.2em;
     color: #05053b;
   }
-
+    .errorlist{
+    color: red;
+    }
 </style>
 
 <div class="container">
@@ -30,7 +32,7 @@
                         <!-- Firstname input -->
                         <div class="form-outline mb-4">
                             <!--                            {{form.first_name}}-->
-                            <input class="form-control" id="id_full_name" maxlength="225" name="full_name" required=""
+                            <input class="form-control" id="id_first_name" maxlength="225" name="first_name" required=""
                                    type="text">
                             <label class="form-label">First Name</label>
                         </div>
@@ -51,8 +53,8 @@
                         <!--                        Profile Photo Input-->
                         <div class="form-outline mb-4">
                             <input class="form-control" id="id_profile_image" name="profile_image" required=""
-                                   type="file">
-                            <label class="form-label" class="form-label">Profile Image</label>
+                                   type="file" accept="image/*" >
+                            <label class="form-label" >Profile Image</label>
                         </div>
                         <!-- Password input -->
                         <div class="form-outline mb-4">
@@ -60,9 +62,11 @@
                             <input autocomplete="new-password" class="form-control" id="id_password1" name="password1"
                                    required="" type="password">
                             <label class="form-label">Password</label>
-                            <div class="form-text" id="passwordHelp">
-                                Your password must be 8-20 characters long, contain letters and numbers, and must not
-                                contain spaces, special characters, or emoji.
+                            <div class="form-text" id="passwordHelp" style="font-size: 0.8em">
+                                Your password can’t be too similar to your other personal information.
+                                Your password must contain at least 8 characters.
+                                Your password can’t be a commonly used password.
+                                Your password can’t be entirely numeric.
                             </div>
                         </div>
                     </div>
@@ -77,7 +81,7 @@
                         <div class="form-outline mb-4">
                             <!--                            {{form.branch}}-->
                             <input class="form-control" id="id_branch" maxlength="225" name="branch"
-                                   placeholder="INFT,CMPN,ETRX,EXTC,BIOM" required="" type="text">
+                                   placeholder="INFT, CMPN, ETRX, EXTC, BIOM" required="" type="text">
                             <label class="form-label">Branch</label>
                         </div>
                         <!-- Phone Number input -->
@@ -90,7 +94,7 @@
                         <!-- Username input -->
                         <div class="form-outline mb-4" id="name">
                             <!--                            {{user_form.username}}-->
-                            <input autofocus="" class="form-control" id="id_username"
+                            <input class="form-control" id="id_username"
                                    maxlength="150" name="username" placeholder="Username is your Roll no" required=""
                                    type="text">
                             <label class="form-label">Username</label>
@@ -104,6 +108,9 @@
                         </div>
                     </div>
                 </div>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
                 <div class="row mb-4">
                     <a href="{%url 'login'%}">Already Registered?</a>
                 </div>
@@ -117,9 +124,8 @@
 <script>
     $("input").addClass("form-control")
     var username = {{request.user.username}}
-    const username=$("id_full_name").val()
+    const username=$("id_first_name").val()
     $("id_username").val()
-
 </script>
 
 {% endblock %}

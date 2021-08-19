@@ -10,9 +10,12 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
+
 from .forms import StudentRegisterForm, UserForm, StudentCertificateForm
 # Create your views here.
 from .models import Student, Certificate
+
+
 
 
 def home(request):
@@ -30,6 +33,14 @@ def register(request, handle_uploaded_file=None):
         if request.method == 'POST':
             user_form = UserForm(request.POST)
             form = StudentRegisterForm(request.POST, request.FILES)
+            if user_form.errors:
+                message = user_form.errors
+                messages.info(request, message)
+                return redirect('register')
+            if form.errors:
+                message = form.errors
+                messages.info(request, message)
+                return redirect('register')
             if form.is_valid() and user_form.is_valid():
                 username = user_form.cleaned_data.get('username')
                 user_form.save()
@@ -38,6 +49,7 @@ def register(request, handle_uploaded_file=None):
                 student.username = User.objects.get(username=username)
                 student.save()
                 return redirect('login')
+
         context = {'form': form, 'user_form': user_form}
         return render(request, 'register.html', context)
 
@@ -125,6 +137,10 @@ def password_reset_request(request):
                         return redirect("password_reset_done")
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
+
+            else:
+                messages.info(request, "User with this email Id doesn't exists")
+                return redirect('password_reset')
 
     password_reset_form = PasswordResetForm()
     return render(request=request, template_name="password_reset.html",
