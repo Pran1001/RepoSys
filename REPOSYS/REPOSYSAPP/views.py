@@ -95,7 +95,7 @@ def certificates(request):
         if form.is_valid():
             form.save()
             return redirect('certificates')
-    allcert = Certificate.objects.all()
+    allcert =Certificate.objects.all()
     context = {'form': form, 'allcert': allcert}
     return render(request, 'certificates.html', context)
 
@@ -121,11 +121,11 @@ def password_reset_request(request):
                     }
                     email = render_to_string(email_template_name, c)
                     try:
-                        send_mail(subject, 'Password Reset Requested', 'vstoreit@gmail.com', [user.email])
+                        send_mail( subject, email, 'vstoreit@gmail.com', [user.email])
+                        return redirect("password_reset_done")
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
-                    messages.success(request, 'A message with reset password instructions has been sent to your inbox.')
-                    return redirect("home")
+
     password_reset_form = PasswordResetForm()
     return render(request=request, template_name="password_reset.html",
                   context={"password_reset_form": password_reset_form})

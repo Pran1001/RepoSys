@@ -14,11 +14,18 @@
       font-size: 1.2em;
       color: #05053b;
    }
-
-
-
-
+   th {
+      font-size: 1.2em;
+      color: #05053b;
+      text-align: center;
+   }
+   tr{
+        font-size: 1.2em;
+        text-align : center;
+        color: #05053b;
+   }
 </style>
+
 <div class="container" id="certificate">
     <div class="row justify-content-center">
         <div class="col-xl-12 col-md-8">
@@ -77,36 +84,31 @@
                     </div>
                 </div>
             </form>
-            <hr>
-            <!--            <table class="table table-bordered table-striped">-->
-            <!--                <thead>-->
-            <!--                <tr>-->
-            <!--                    <th>Name of Certificate</th>-->
-            <!--                    <th>Certificate</th>-->
-            <!--                </tr>-->
-            <!--                </thead>-->
-            <!--                <tbody>-->
-            <!--                </tbody>-->
-            <!--            </table>-->
+            <div class="row justify-content-center">
+                <div class="col-xl-12 col-md-8">
+                        <h3 class="text-center ">Your Uploaded Certificates</h3>
+                        <hr>
+                        <table class="table table-light table-bordered table-hover table-striped ">
+                            <tr>
+                                <th>Name of Certificate</th>
+                                <th>Link of Certificate Document</th>
+                            </tr>
 
-            <table border="1" width="600">
-                <tr>
-                    <td>Name</td>
-                    <td>Video File</td>
-                </tr>
+                            {% for certificate in allcert %}
+                            <tr>
+                                <td>{{ certificate.type_of_cert }}</td>
+                                <td>
 
-                {% for certificate in allcert %}
-                <tr>
-                    <td>{{ certificate.type_of_cert }}</td>
-                    <td>
-
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
 
 
 {% endblock %}

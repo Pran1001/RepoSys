@@ -16,6 +16,10 @@
   }
 
 
+
+
+
+
 </style>
 
 <div class="container" id="education">
@@ -30,22 +34,22 @@
                         <div class="form-outline mb-4">
                             <label class="form-label" for="qua_level">Qualification Level</label>
                             <select class="form-control" id="qua_level">
-                                <option value="0">--Select--</option>
-                                <option value="1">F.Y.J.C.(11 Std)</option>
-                                <option value="2">S.Y.J.C.(11 Std)</option>
-                                <option value="3">Under Graduate Course</option>
-                                <option value="4">Post Graduate Course</option>
-                                <option value="5">S.S.C.(10 Std)</option>
-                                <option value="6">Vocational Course</option>
-                                <option value="7">Certificate Course</option>
-                                <option value="8">Diploma Course</option>
+                                <option disabled selected>--Select--</option>
+                                <option value="F.Y.J.C.(11 Std)">F.Y.J.C.(11 Std)</option>
+                                <option value="S.Y.J.C.(11 Std)">S.Y.J.C.(11 Std)</option>
+                                <option value="Under Graduate Course">Under Graduate Course</option>
+                                <option value="Post Graduate Course">Post Graduate Course</option>
+                                <option value="S.S.C.(10 Std)">S.S.C.(10 Std)</option>
+                                <option value="Vocational Course">Vocational Course</option>
+                                <option value="Certificate Course">Certificate Course</option>
+                                <option value="Diploma Course">Diploma Course</option>
                             </select>
                         </div>
                         <!-- Institute State input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="ins_state">Institute State</label>
                             <select class="form-control" id="ins_state">
-                                <option value="0">--Select--</option>
+                                <option disabled selected>--Select--</option>
                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                                 <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -89,19 +93,19 @@
                             <label class="form-label" for="school_name">College Name/School Name</label>
                             <input class="form-control" id="school_name" required type="text">
                         </div>
-                        <!-- Mode input -->
+
+                        <!-- Addmission Year input -->
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="mode">Mode</label>
-                            <select class="form-control" id="mode">
-                                <option value="0">--Select--</option>
-                                <option value="1">Regular</option>
-                                <option value="2">Distance/Correspondence</option>
-                            </select>
+                            <label class="form-label" for="add_year">Addmission Year</label>
+                            <input class="form-control" id="add_year" required type="date">
                         </div>
-                        <!-- No. of attempts input -->
+                        <!-- Result input -->
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="attempts">Attempts</label>
-                            <input class="form-control" id="attempts" required type="number">
+                            <label class="form-label" for="result">Result</label>
+                            <select class="form-control" id="result">
+                                <option disabled selected>--Select--</option>
+                                <option value="1">Passed</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col">
@@ -109,10 +113,10 @@
                         <div class="form-outline mb-4">
                             <label class="form-label" for="stream">Stream</label>
                             <select class="form-control" id="stream">
-                                <option value="0">--Select--</option>
-                                <option value="1">SSC</option>
-                                <option value="2">Science</option>
-                                <option value="2">Engineering</option>
+                                <option disabled selected>--Select--</option>
+                                <option value="SSC">SSC</option>
+                                <option value="Science">Science</option>
+                                <option value="Engineering">Engineering</option>
                             </select>
                         </div>
                         <!-- Institute District input -->
@@ -126,66 +130,31 @@
                                 <option>5</option>
                             </select>
                         </div>
+
                         <!-- Course Name input -->
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="course_name">Institute District</label>
+                            <label class="form-label" for="course_name">Course Name</label>
                             <select class="form-control" id="course_name">
-                                <option value="0">--Select--</option>
-                                <option value="1">S.S.C.(10 Std)</option>
-                                <option value="1">H.S.C.(12 Std)</option>
-                                <option value="1">Bachelor of Engineering(B.E.)-Biomedical Engineering(UnAided)</option>
-                                <option value="2">Bachelor of Engineering(B.E.)-Computer Engineering(UnAided)</option>
-                                <option value="3">Bachelor of Engineering(B.E.)-Electronics Engineering(UnAided)
+                                <option disabled selected>--Select--</option>
+                                <option value="S.S.C.(10 Std)">S.S.C.(10 Std)</option>
+                                <option value="H.S.C.(12 Std)">H.S.C.(12 Std)</option>
+                                <option value="Bachelor of Engineering(B.E.)-Biomedical Engineering(UnAided)">Bachelor
+                                    of Engineering(B.E.)-Biomedical Engineering(UnAided)
                                 </option>
-                                <option value="4">Bachelor of Engineering(B.E.)-Information Technology(UnAided)</option>
-                                <option value="5">Bachelor of Engineering(B.E.)-Electronics & Telecommunication
+                                <option value="Bachelor of Engineering(B.E.)-Computer Engineering(UnAided)">Bachelor of
+                                    Engineering(B.E.)-Computer Engineering(UnAided)
+                                </option>
+                                <option value="Bachelor of Engineering(B.E.)-Electronics Engineering(UnAided)">Bachelor
+                                    of Engineering(B.E.)-Electronics Engineering(UnAided)
+                                </option>
+                                <option value="Bachelor of Engineering(B.E.)-Information Technology(UnAided)">Bachelor
+                                    of Engineering(B.E.)-Information Technology(UnAided)
+                                </option>
+                                <option value="Bachelor of Engineering(B.E.)-Electronics & Telecommunication
+                                    Engineering(UnAided)">Bachelor of Engineering(B.E.)-Electronics & Telecommunication
                                     Engineering(UnAided)
                                 </option>
-                                <option value="6">Management Studies</option>
-                            </select>
-                        </div>
-                        <!-- Addmission Year input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="add_year">Addmission Year</label>
-                            <input class="form-control" id="add_year" required type="date">
-                        </div>
-                        <!-- Result input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="result">Result</label>
-                            <select class="form-control" id="result">
-                                <option value="0">--Select--</option>
-                                <option value="1">Passed</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <!-- Completed/Pursuing input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="completed">Completed</label>
-                            <select class="form-control" id="completed">
-                                <option value="0">--Select--</option>
-                                <option value="1">Completed</option>
-                                <option value="2">Pursuing</option>
-                            </select>
-                        </div>
-                        <!-- Institute Taluka input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="taluka">Institute Taluka</label>
-                            <select class="form-control" id="taluka">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <!-- Qualification Level input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="board_uni">Board/University</label>
-                            <select class="form-control" id="board_uni">
-                                <option value="0">--Select--</option>
-                                <option value="1">Maharashtra Board</option>
-                                <option value="2">Mumbai University</option>
+                                <option value="Management Studies">Management Studies</option>
                             </select>
                         </div>
                         <!-- Passing Year input -->
@@ -199,14 +168,58 @@
                             <input class="form-control" id="cgpa" required type="text">
                         </div>
                     </div>
-                </div>
-                <!-- Upload Marksheet-->
-                <div class="row mb-4">
                     <div class="col">
-                        <label class="form-label" for="marksheet">Upload Marksheet</label>
-                        <input class="form-control" id="marksheet" type="file">
+                        <!-- Completed/Pursuing input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="completed">Completed</label>
+                            <select class="form-control" id="completed">
+                                <option disabled selected>--Select--</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Pursuing">Pursuing</option>
+                            </select>
+                        </div>
+                        <!-- Board/University input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="board_uni">Board/University</label>
+                            <select class="form-control" id="board_uni">
+                                <option disabled>--Select--</option>
+                                <option value="Maharashtra Board">Maharashtra Board</option>
+                                <option value="Mumbai University">Mumbai University</option>
+                            </select>
+                        </div>
+
+                        <!-- Mode input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="mode">Mode</label>
+                            <select class="form-control" id="mode">
+                                <option value="0">--Select--</option>
+                                <option value="1">Regular</option>
+                                <option value="2">Distance/Correspondence</option>
+                            </select>
+                        </div>
+                        <!-- No. of attempts input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="attempts">Attempts</label>
+                            <select class="form-control" id="attempts">
+                                <option disabled selected>--Select--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+
+                        <!-- Upload Marksheet-->
+                        <div class="form-outline mb-4">
+
+                            <label class="form-label" for="marksheet">Upload Marksheet</label>
+                            <input class="form-control" id="marksheet" type="file">
+
+                        </div>
                     </div>
                 </div>
+
                 <div class="row mb-4">
                     <div class="col">
                         <!-- Save button -->
