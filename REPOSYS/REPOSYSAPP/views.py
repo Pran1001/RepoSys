@@ -10,12 +10,9 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
-
 from .forms import StudentRegisterForm, UserForm, StudentCertificateForm
 # Create your views here.
 from .models import Student, Certificate
-
-
 
 
 def home(request):
@@ -102,14 +99,23 @@ def education(request):
 
 def certificates(request):
     form = StudentCertificateForm()
+    username = request.user.username
+    user_obj = User.objects.get(username=username)
     if request.method == 'POST':
         form = StudentCertificateForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
+        if form.errors:
+            message = form.errors
+            messages.info(request, message)
             return redirect('certificates')
-    allcert =Certificate.objects.all()
+        if form.is_valid():
+            cert_form = form.save(commit=False)
+            cert_form.user = user_obj
+            cert_form.save()
+            return redirect('certificates')
+    allcert = Certificate.objects.filter(user=user_obj)
     context = {'form': form, 'allcert': allcert}
     return render(request, 'certificates.html', context)
+
 
 
 def password_reset_request(request):
@@ -133,7 +139,7 @@ def password_reset_request(request):
                     }
                     email = render_to_string(email_template_name, c)
                     try:
-                        send_mail( subject, email, 'vstoreit@gmail.com', [user.email])
+                        send_mail(subject, email, 'vstoreit@gmail.com', [user.email])
                         return redirect("password_reset_done")
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')

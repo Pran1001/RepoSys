@@ -15,15 +15,23 @@
       color: #05053b;
    }
    th {
-      font-size: 1.2em;
       color: #05053b;
       text-align: center;
    }
    tr{
-        font-size: 1.2em;
         text-align : center;
         color: #05053b;
    }
+   .table-responsive{
+    width: 100%
+   }
+   .errorlist{
+    color: red;
+    }
+
+
+
+
 </style>
 
 <div class="container" id="certificate">
@@ -69,7 +77,8 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="desc_of_event">Describe Event</label>
                     <div class="col-sm-8">
-                        <textarea class="form-control" id="desc_of_event" name="desc_of_event" rows="3"></textarea>
+                        <textarea class="form-control" id="desc_of_event" name="desc_of_event"
+                                  placeholder="If nothing then type NULL" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -78,37 +87,42 @@
                         <input class="form-control" id="upload_cert" name="upload_cert" type="file">
                     </div>
                 </div>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
                 <div class="form-group row">
                     <div class="col">
                         <button class="btn btn-primary btn-block" type="submit">ADD</button>
                     </div>
                 </div>
             </form>
-            <div class="row justify-content-center">
-                <div class="col-xl-12 col-md-8">
-                        <h3 class="text-center ">Your Uploaded Certificates</h3>
-                        <hr>
-                        <table class="table table-light table-bordered table-hover table-striped ">
-                            <tr>
-                                <th>Name of Certificate</th>
-                                <th>Link of Certificate Document</th>
-                            </tr>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-md-8">
+                        <form class="bg-white  rounded-5 shadow-5-strong p-5">
+                            <h3 class="text-center ">Your Uploaded Certificates</h3>
+                            <hr>
+                            <table class="table table-bordered table-hover table-striped table-responsive">
+                                <tr>
+                                    <th>Name of Certificate</th>
+                                    <th>Link of Certificate Document</th>
+                                </tr>
 
-                            {% for certificate in allcert %}
-                            <tr>
-                                <td>{{ certificate.type_of_cert }}</td>
-                                <td>
-
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </table>
+                                {% for certificate in allcert %}
+                                <tr>
+                                    <td>{{certificate.type_of_cert }}</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 
 
 {% endblock %}

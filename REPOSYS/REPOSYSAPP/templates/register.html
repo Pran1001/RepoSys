@@ -17,12 +17,16 @@
     .errorlist{
     color: red;
     }
+
+
+
 </style>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl-10 col-md-8">
-            <form action="{% url 'register' %}" class="bg-white  rounded-5 shadow-5-strong p-5" enctype='multipart/form-data'
+            <form action="{% url 'register' %}" class="bg-white  rounded-5 shadow-5-strong p-5"
+                  enctype='multipart/form-data'
                   method="POST">
                 {% csrf_token %}
                 <h3 class="text-center ">Registration</h3>
@@ -43,6 +47,14 @@
                                    type="text">
                             <label class="form-label">Roll No</label>
                         </div>
+                        <!-- Year input -->
+                        <div class="form-outline mb-4">
+                            <!--                            {{form.year}}-->
+                            <input class="form-control" id="id_year" maxlength="30" name="year"
+                                   placeholder="FE, SE, TE, BE"
+                                   required="" type="text">
+                            <label class="form-label">Year</label>
+                        </div>
                         <!-- Email Input-->
                         <div class="form-outline mb-4">
                             <!--                            {{form.email}}-->
@@ -52,9 +64,9 @@
                         </div>
                         <!--                        Profile Photo Input-->
                         <div class="form-outline mb-4">
-                            <input class="form-control" id="id_profile_image" name="profile_image" required=""
-                                   type="file" accept="image/*" >
-                            <label class="form-label" >Profile Image</label>
+                            <input accept="image/*" class="form-control" id="id_profile_image" name="profile_image"
+                                   required="" type="file">
+                            <label class="form-label">Profile Image</label>
                         </div>
                         <!-- Password input -->
                         <div class="form-outline mb-4">
@@ -80,9 +92,17 @@
                         <!-- Branch input -->
                         <div class="form-outline mb-4">
                             <!--                            {{form.branch}}-->
-                            <input class="form-control" id="id_branch" maxlength="225" name="branch"
-                                   placeholder="INFT, CMPN, ETRX, EXTC, BIOM" required="" type="text">
+                            <input class="form-control" id="id_branch" maxlength="45"
+                                   name="branch" placeholder="INFT, CMPN, EXTC, ETRX, BIOM, MNGT"
+                                   required="" type="text">
                             <label class="form-label">Branch</label>
+                        </div>
+                        <!-- Division input -->
+                        <div class="form-outline mb-4">
+                            <!--                            {{form.div}}-->
+                            <input class="form-control" id="id_div" maxlength="30" name="div" placeholder="A, B"
+                                   required="" type="text">
+                            <label class="form-label">Division</label>
                         </div>
                         <!-- Phone Number input -->
                         <div class="form-outline mb-4">
@@ -126,6 +146,9 @@
     var username = {{request.user.username}}
     const username=$("id_first_name").val()
     $("id_username").val()
+
+
+
 </script>
 
 {% endblock %}
