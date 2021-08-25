@@ -14,8 +14,12 @@
     font-size: 1.2em;
     color: #05053b;
   }
+  .errorlist{
+    color: red;
+    }
+
 </style>
-<script >
+<script>
 var stateObject = {
 "India": { "AndraPradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Kadapa", "Krishna", "Kurnool", "Prakasam", "Nellore", "        Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari"],
             "ArunachalPradesh": ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kra Daadi", "Kurung Kumey", "Lohit", "Longding", "Lower Dibang Valley", "Lower Subansiri", "Namsai", "Papum Pare", "Siang", "Tawang", "Tirap", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang", "Itanagar"],
@@ -82,12 +86,13 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
 }
 }
 }
+
 </script>
 
 <div class="container" id="education">
     <div class="row justify-content-center">
         <div class="col-xl-12 col-md-8">
-            <form class="bg-white  rounded-5 shadow-5-strong p-5" method="POST" enctype='multipart/form-data'>
+            <form class="bg-white  rounded-5 shadow-5-strong p-5" enctype='multipart/form-data' method="POST">
                 {% csrf_token %}
                 <h3 class="text-center ">Education Details</h3>
                 <hr>
@@ -96,7 +101,7 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                         <!-- Qualification Level input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="qua_level">Qualification Level</label>
-                            <select class="form-control"  name="qua_level" id="qua_level">
+                            <select class="form-control" id="qua_level" name="qua_level" required>
                                 <option disabled selected>--Select--</option>
                                 <option value="S.S.C.(10 Std)">S.S.C.(10 Std)</option>
                                 <option value="F.Y.J.C.(11 Std)">F.Y.J.C.(11 Std)</option>
@@ -112,32 +117,32 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                         <!-- Institute Country input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="districtSel">Institute Country</label>
-                            <select class="form-control" name="country" id="countySel" size="1">
-                                <option value="" disabled selected>--Select--</option>
+                            <select class="form-control" id="countySel" name="country" size="1" required>
+                                <option disabled selected value="">--Select--</option>
                             </select>
                         </div>
 
                         <!-- College Name input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="college_name">College Name/School Name</label>
-                            <input class="form-control" name="college_name" id="college_name"  type="text">
+                            <input class="form-control" id="college_name" name="college_name" type="text" required>
                         </div>
 
                         <!-- Addmission Year input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="admission_year">Addmission Year</label>
-                            <input class="form-control" name="admission_year" id="admission_year" type="date">
+                            <input class="form-control" id="admission_year" name="admission_year" type="date" required>
                         </div>
                         <!-- Percentage/CGPA input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="percentage">Percentage/CGPA</label>
-                            <input class="form-control" name="percentage" id="percentage" type="text">
+                            <input class="form-control" id="percentage" name="percentage" type="text" required>
                         </div>
                         <!-- Upload Marksheet-->
                         <div class="form-outline mb-4">
 
                             <label class="form-label" for="upload_marksheet">Upload Marksheet</label>
-                            <input class="form-control" name="upload_marksheet" id="upload_marksheet" type="file">
+                            <input class="form-control" id="upload_marksheet" name="upload_marksheet" type="file" required>
 
                         </div>
                     </div>
@@ -145,7 +150,7 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                         <!-- Stream input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="stream">Stream</label>
-                            <select class="form-control" name="stream" id="stream">
+                            <select class="form-control" id="stream" name="stream" required>
                                 <option disabled selected>--Select--</option>
                                 <option value="SSC">SSC</option>
                                 <option value="Science">Science</option>
@@ -155,15 +160,15 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                         <!-- Institute State input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="stateSel">Institute State</label>
-                                <select class="form-control" name="state" id="stateSel" size="1">
-                                <option value="" disabled selected>--Select Country First--</option>
+                            <select class="form-control" id="stateSel" name="state" size="1" required>
+                                <option disabled selected value="">--Select Country First--</option>
                             </select>
                         </div>
 
                         <!-- Course Name input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="course_name">Course Name</label>
-                            <select class="form-control" name="course_name" id="course_name">
+                            <select class="form-control" id="course_name" name="course_name" required>
                                 <option disabled selected>--Select--</option>
                                 <option value="S.S.C.(10 Std)">S.S.C.(10 Std)</option>
                                 <option value="H.S.C.(12 Std)">H.S.C.(12 Std)</option>
@@ -189,12 +194,12 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                         <!-- Passing Year input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="pass_year">Passing Year</label>
-                            <input class="form-control" name="pass_year" id="pass_year" type="date">
+                            <input class="form-control" id="pass_year" name="pass_year" type="date" required>
                         </div>
                         <!-- No. of attempts input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="attempts">Attempts</label>
-                            <select class="form-control" name="attempts" id="attempts">
+                            <select class="form-control" id="attempts" name="attempts" required>
                                 <option disabled selected>--Select--</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -208,7 +213,7 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                         <!-- Completed/Pursuing input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="completed">Completed</label>
-                            <select class="form-control" name="completed" id="completed">
+                            <select class="form-control" id="completed" name="completed" required>
                                 <option disabled selected>--Select--</option>
                                 <option value="Completed">Completed</option>
                                 <option value="Pursuing">Pursuing</option>
@@ -217,14 +222,14 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                         <!-- Institute District input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="districtSel">Institute District</label>
-                            <select class="form-control" name="district" id="districtSel" size="1">
-                                <option value="" disabled selected>--Select State First--</option>
+                            <select class="form-control" id="districtSel" name="district" size="1" required>
+                                <option disabled selected value="">--Select State First--</option>
                             </select>
                         </div>
                         <!-- Board/University input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="board_university">Board/University</label>
-                            <select class="form-control" name="board_university" id="board_university">
+                            <select class="form-control" id="board_university" name="board_university" required>
                                 <option disabled selected>--Select--</option>
                                 <option value="Maharashtra Board">Maharashtra Board</option>
                                 <option value="Mumbai University">Mumbai University</option>
@@ -233,7 +238,7 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                         <!-- Result input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="result">Result</label>
-                            <select class="form-control" name="result" id="result">
+                            <select class="form-control" id="result" name="result" required>
                                 <option disabled selected>--Select--</option>
                                 <option value="Passed">Passed</option>
                             </select>
@@ -242,7 +247,7 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                         <!-- Mode input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="mode">Mode</label>
-                            <select class="form-control" name="mode" id="mode">
+                            <select class="form-control" id="mode" name="mode" required>
                                 <option value="">--Select--</option>
                                 <option value="Regular">Regular</option>
                                 <option value="Distance/Correspondence">Distance/Correspondence</option>
@@ -293,9 +298,6 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                                     <td>{{education.pass_year}}</td>
                                     <td>{{education.percentage}}</td>
                                     <td>{{request.user.education.upload_marksheet}}</td>
-
-
-
                                 </tr>
                                 {% endfor %}
                             </table>
