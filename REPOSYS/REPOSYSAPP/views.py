@@ -10,16 +10,16 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
-from .forms import StudentRegisterForm, UserForm, StudentCertificateForm
+from .forms import StudentRegisterForm, UserForm, StudentCertificateForm, StudentEducationForm
 # Create your views here.
-from .models import Student, Certificate
+from .models import Student, Certificate, Education
 
 
 def home(request):
     return render(request, 'home.html')
 
 
-def register(request, handle_uploaded_file=None):
+def register(request):
     if request.user.is_superuser:
         return redirect('report')
     elif request.user.is_authenticated:
@@ -94,7 +94,23 @@ def profile(request):
 
 
 def education(request):
-    return render(request, 'education.html')
+    form = StudentEducationForm()
+    username = request.user.username
+    user_obj = User.objects.get(username=username)
+    if request.method == 'POST':
+        form = StudentEducationForm(request.POST, request.FILES)
+        if form.errors:
+            message = form.errors
+            messages.info(request, message)
+            return redirect('education')
+        if form.is_valid():
+            edu_form = form.save(commit=False)
+            edu_form.user = user_obj
+            edu_form.save()
+            return redirect('education')
+    allcert = Education.objects.filter(user=user_obj)
+    context = {'form': form, 'allcert': allcert}
+    return render(request, 'education.html',context)
 
 
 def certificates(request):

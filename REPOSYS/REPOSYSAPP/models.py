@@ -49,3 +49,25 @@ class Certificate(models.Model):
     date_of_event = models.DateField()
     desc_of_event = models.CharField(max_length=225, null=True)
     upload_cert = models.FileField(upload_to="certificates/%Y/%m/%d/", null=True, blank=True)
+
+class Education(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    qua_level = models.CharField(max_length=225, null=True)
+    country = models.CharField(max_length=225, null=True)
+    state = models.CharField(max_length=225, null=True)
+    district = models.CharField(max_length=225, null=True)
+    college_name = models.CharField(max_length=225, null=True)
+    admission_year = models.DateField()
+    result = models.CharField(max_length=225, null=True)
+    stream = models.CharField(max_length=225, null=True)
+    course_name = models.CharField(max_length=225, null=True)
+    pass_year = models.DateField()
+    percentage = models.CharField(max_length=225, null=True)
+    completed = models.CharField(max_length=225, null=True)
+    board_university = models.CharField(max_length=225, null=True)
+    mode = models.CharField(max_length=225, null=True)
+    attempts = models.CharField(max_length=225, null=True)
+    upload_marksheet = models.FileField(upload_to="marksheets/%Y/%m/%d/", null=True, blank=True)
+
+
+
