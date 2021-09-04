@@ -297,7 +297,7 @@ districtSel.options[districtSel.options.length] = new Option(district[i], distri
                                     <td>{{education.admission_year}}</td>
                                     <td>{{education.pass_year}}</td>
                                     <td>{{education.percentage}}</td>
-                                    <td>{{request.user.education.upload_marksheet}}</td>
+                                    <td><a class="btn btn-primary " href="{{education.upload_marksheet.url}}" target="_blank" role="button">VIEW DOCUMENT</a></td>
                                 </tr>
                                 {% endfor %}
                             </table>

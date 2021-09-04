@@ -111,8 +111,7 @@
                                 {% for certificate in allcert %}
                                 <tr>
                                     <td>{{certificate.type_of_cert }}</td>
-                                    <td>
-                                    </td>
+                                    <td><a class="btn btn-primary " href="{{certificate.upload_cert.url}}" target="_blank" role="button"  >VIEW DOCUMENT</a></td>
                                 </tr>
                                 {% endfor %}
                             </table>

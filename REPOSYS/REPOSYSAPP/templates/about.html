@@ -41,26 +41,25 @@ h2 {
 .about h2 {
 	color: #fff;
 }
-.about span {
+.about img {
 	display: block;
 	width: 100px;
-	height: 100px;
 	line-height: 100px;
 	margin:auto;
-	border-radius:50%;
+	border-radius: 50%;
 	font-size: 40px;
 	color: #FFFFFF;
 	opacity: 0.7;
 	background-color: #FFFFFF;
-	border: 2px solid #4C0822;
+<!--	border: 2px solid #FFF;-->
 
-	webkit-transition:all .5s ease;
- 	moz-transition:all .5s ease;
- 	os-transition:all .5s ease;
- 	transition:all .5s ease;
+<!--	webkit-tansition:all .5s ease;-->
+<!-- 	moz-transition:all .5s ease;-->
+<!-- 	os-transition:all .5s ease;-->
+<!-- 	transition:all .5s ease;-->
 
 }
-.about-item:hover span{
+.about-item:hover img{
 	opacity: 1;
 	border: 2px solid #f5f5f5;
 	font-size: 42px;
@@ -91,6 +90,7 @@ h2 {
 
 
 
+
 </style>
 
 <section class="text-center ">
@@ -102,20 +102,32 @@ h2 {
 <section class="text-center about">
     <h1>About US</h1>
     <div class="container">
+        <h3>
+            V-Store it !
+        </h3>
+        <p>
+            This is our website for Storeing all your Acheivements.
+        </p>
+
+    </div>
+    <div class="container">
         <div class="row">
             <div class="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn" data-wow-offset="200">
-                <span class="fa fa-group"></span>
+<!--                <span class="fa fa-group"></span>-->
+                <img src="{% static 'img/V_profile.jpeg' %}" alt="">
                 <h3>Riddhi Warale</h3>
                 <p class="lead"></p>
             </div>
             <div class="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn" data-wow-offset="200">
-                <span class="fa fa-info"></span>
+<!--                <span class="fa fa-info"></span>-->
+                <img src="{% static 'img/V_profile.jpeg' %}" alt="">
                 <h3>Pranali Darekar</h3>
                 <p class="lead"></p>
             </div>
             <div class="clearfix visible-md-block visible-sm-block"></div>
             <div class="col-lg-4 col-sm-6 col-ex-12 about-item wow lightSpeedIn" data-wow-offset="200">
-                <span class="fa fa-file"></span>
+<!--                <span class="fa fa-file"></span>-->
+                <img src="{% static 'img/V_profile.jpeg' %}" alt="">
                 <h3>Vaishnavi Lalage</h3>
                 <p class="lead"></p>
             </div>
