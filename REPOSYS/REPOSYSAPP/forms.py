@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
+from django import forms
 from django.contrib.auth.models import User
 
 from .models import Student, Certificate, Education
@@ -30,3 +31,8 @@ class StudentEducationForm(ModelForm):
         fields = '__all__'
         exclude = ('user',)
 
+class ContactForm(forms.Form):
+    name = forms.CharField(required=True)
+    from_email = forms.EmailField(required=True)
+    subject = forms.CharField(required=True)
+    message = forms.CharField(widget=forms.Textarea, required=True)

@@ -102,16 +102,16 @@
                         <form class="bg-white  rounded-5 shadow-5-strong p-5">
                             <h3 class="text-center ">Your Uploaded Certificates</h3>
                             <hr>
-                            <table class="table table-bordered table-hover table-striped table-responsive">
-                                <tr>
-                                    <th>Name of Certificate</th>
-                                    <th>Link of Certificate Document</th>
+                            <table class="table table-bordered table-hover  table-responsive" style="width:100%; ">
+                                <tr style="background-color: lightgrey;">
+                                    <th style="width:450px; text-align: left;">Name of Certificate</th>
+                                    <th style="width:705px; text-align: left;">Link of Certificate Document</th>
                                 </tr>
 
                                 {% for certificate in allcert %}
                                 <tr>
-                                    <td>{{certificate.type_of_cert }}</td>
-                                    <td><a class="btn btn-primary " href="{{certificate.upload_cert.url}}" target="_blank" role="button"  >VIEW DOCUMENT</a></td>
+                                    <td style="width:450px; text-align: left;">{{certificate.type_of_cert }}</td>
+                                    <td style="width:705px; text-align: left;"><a class="btn btn-primary" style="width:450px;" href="{{certificate.upload_cert.url}}" target="_blank" role="button"  >VIEW DOCUMENT</a></td>
                                 </tr>
                                 {% endfor %}
                             </table>

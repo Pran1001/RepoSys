@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
-from .forms import StudentRegisterForm, UserForm, StudentCertificateForm, StudentEducationForm
+from .forms import StudentRegisterForm, UserForm, StudentCertificateForm, StudentEducationForm, ContactForm
 # Create your views here.
 from .models import Student, Certificate, Education
 
@@ -82,8 +82,23 @@ def logout(request):
     return redirect('home')
 
 
-def about(request):
-    return render(request, 'about.html')
+def contact(request):
+        if request.method == 'GET':
+            form = ContactForm()
+        else:
+            form = ContactForm(request.POST)
+            if form.is_valid():
+                name = form.cleaned_data['name']
+                subject = form.cleaned_data['subject']
+                from_email = form.cleaned_data['from_email']
+                message = name + "-" + form.cleaned_data['message']
+                try:
+                    send_mail(subject, message, from_email, ['vstoreit@gmail.com'])
+                except BadHeaderError:
+                    return HttpResponse('Invalid header found.')
+                return redirect('contactus_done')
+        return render(request, "contactus.html", {'form': form})
+
 
 
 def profile(request):
@@ -170,4 +185,9 @@ def password_reset_request(request):
 
 
 def report(request):
+    if request.user.is_superuser:
+        pass
     return render(request, 'report.html')
+
+def contactus_done(request):
+    return render(request, 'Contactus_done.html')

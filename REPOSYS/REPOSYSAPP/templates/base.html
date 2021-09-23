@@ -5,6 +5,8 @@
     <title>V-Store it</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon1.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon1.png' %}">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
@@ -33,21 +35,20 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'report' %}">Generate Report</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contactus' %}">Contact us</a></li>
                         {% elif user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="">Hello, {{user.username}}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile Details</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'education' %}">Educational Details</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'education' %}">Educational Details</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'certificates' %}">Certificates</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contactus' %}">Contact us</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contactus' %}">Contact us</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -83,7 +84,7 @@
                                 <h6 class="mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5"><b>MENU</b></h6>
                                 <ul class="list-unstyled">
                                     <li><a href="{% url 'home' %}">Home</a></li>
-                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'contactus' %}">Contact us</a></li>
                                     <li><a href="{% url 'register' %}">Register</a></li>
                                     <li><a href="{% url 'login' %}">Login</a></li>
                                 </ul>
