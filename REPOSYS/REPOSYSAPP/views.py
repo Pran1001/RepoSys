@@ -1,10 +1,12 @@
+import csv
+
 from django.contrib import messages, auth
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail, BadHeaderError
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, response
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
@@ -188,6 +190,33 @@ def report(request):
     if request.user.is_superuser:
         pass
     return render(request, 'report.html')
+
+# def export_users_csv(request):
+#     response=HttpResponse(content_type='text/csv')
+#     response['Content=Disposition'] = 'attachment; filename="users_csv" '
+#     writer = csv.writer(response)
+#     writer.writerow(['username','first_name','last_name ','email','branch'])
+#
+#     users = User.objects.all().values_list('username','first_name','last_name ','email','branch')
+#     for user in users:
+#         writer.writerow(user)
+#
+#     return response
+
+
+
+def export_student_csv(request):
+    response=HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="student.csv" '
+    writer = csv.writer(response)
+    writer.writerow(['username','first_name','last_name ','email','branch'])
+
+    students = Student.objects.all().values_list('username','first_name','last_name','email','branch')
+    for student in students:
+        writer.writerow(student)
+
+
+    return response
 
 def contactus_done(request):
     return render(request, 'Contactus_done.html')

@@ -12,6 +12,7 @@ urlpatterns = [
     path('education/', views.education, name='education'),
     path('certificates/', views.certificates, name='certificates'),
     path('report/', views.report, name='report'),
+    path('export_student_csv',views.export_student_csv),
     path('contactus_done/',views.contactus_done, name='contactus_done'),
 
 ]

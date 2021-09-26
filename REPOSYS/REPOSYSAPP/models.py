@@ -39,7 +39,8 @@ class Student(models.Model):
 
     def __str__(self):
         return self.first_name + " " + self.last_name
-
+    class Meta:
+        db_table ="Student"
 
 class Certificate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
