@@ -32,6 +32,7 @@
 
 
 
+
 </style>
 
 <div class="container" id="certificate">
@@ -57,34 +58,34 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label" for="name_of_event" >Name of Event</label>
+                    <label class="col-sm-4 col-form-label" for="name_of_event">Name of Event</label>
                     <div class="col-sm-8">
-                        <input class="form-control" id="name_of_event" name="name_of_event" type="text" required>
+                        <input class="form-control" id="name_of_event" name="name_of_event" required type="text">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="auth_of_event">Issuing Authority of Event</label>
                     <div class="col-sm-8">
-                        <input class="form-control" id="auth_of_event" name="auth_of_event" type="text" required>
+                        <input class="form-control" id="auth_of_event" name="auth_of_event" required type="text">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="date_of_event">Date of Event</label>
                     <div class="col-sm-8">
-                        <input class="form-control" id="date_of_event" name="date_of_event" type="date" required>
+                        <input class="form-control" id="date_of_event" name="date_of_event" required type="date">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="desc_of_event">Describe Event</label>
                     <div class="col-sm-8">
                         <textarea class="form-control" id="desc_of_event" name="desc_of_event"
-                                  placeholder="If nothing then type NULL" rows="3" required></textarea>
+                                  placeholder="If nothing then type NULL" required rows="3"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label" for="upload_cert">Upload Certificate</label>
                     <div class="col-sm-8">
-                        <input class="form-control" id="upload_cert" name="upload_cert" type="file" required>
+                        <input class="form-control" id="upload_cert" name="upload_cert" required type="file">
                     </div>
                 </div>
                 {% for message in messages %}
@@ -111,7 +112,11 @@
                                 {% for certificate in allcert %}
                                 <tr>
                                     <td style="width:450px; text-align: left;">{{certificate.type_of_cert }}</td>
-                                    <td style="width:705px; text-align: left;"><a class="btn btn-primary" style="width:450px;" href="{{certificate.upload_cert.url}}" target="_blank" role="button"  >VIEW DOCUMENT</a></td>
+                                    <td style="width:705px; text-align: left;"><a class="btn btn-primary"
+                                                                                  href="{{certificate.upload_cert.url}}"
+                                                                                  role="button"
+                                                                                  style="width:450px;" target="_blank">VIEW
+                                        DOCUMENT</a></td>
                                 </tr>
                                 {% endfor %}
                             </table>

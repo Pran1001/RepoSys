@@ -2,17 +2,16 @@ import csv
 
 from django.contrib import messages, auth
 from django.contrib.auth.forms import PasswordResetForm
-from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail, BadHeaderError
 from django.db.models import Q
-from django.http import HttpResponse, response
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
-from .forms import StudentRegisterForm, UserForm, StudentCertificateForm, StudentEducationForm, ContactForm
+from .forms import *
 # Create your views here.
 from .models import Student, Certificate, Education
 
@@ -85,22 +84,21 @@ def logout(request):
 
 
 def contact(request):
-        if request.method == 'GET':
-            form = ContactForm()
-        else:
-            form = ContactForm(request.POST)
-            if form.is_valid():
-                name = form.cleaned_data['name']
-                subject = form.cleaned_data['subject']
-                from_email = form.cleaned_data['from_email']
-                message = name + "-" + form.cleaned_data['message']
-                try:
-                    send_mail(subject, message, from_email, ['vstoreit@gmail.com'])
-                except BadHeaderError:
-                    return HttpResponse('Invalid header found.')
-                return redirect('contactus_done')
-        return render(request, "contactus.html", {'form': form})
-
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = name + "-" + form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, ['vstoreit@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('contactus_done')
+    return render(request, "contactus.html", {'form': form})
 
 
 def profile(request):
@@ -127,7 +125,7 @@ def education(request):
             return redirect('education')
     allcert = Education.objects.filter(user=user_obj)
     context = {'form': form, 'allcert': allcert}
-    return render(request, 'education.html',context)
+    return render(request, 'education.html', context)
 
 
 def certificates(request):
@@ -148,7 +146,6 @@ def certificates(request):
     allcert = Certificate.objects.filter(user=user_obj)
     context = {'form': form, 'allcert': allcert}
     return render(request, 'certificates.html', context)
-
 
 
 def password_reset_request(request):
@@ -191,32 +188,394 @@ def report(request):
         pass
     return render(request, 'report.html')
 
-# def export_users_csv(request):
-#     response=HttpResponse(content_type='text/csv')
-#     response['Content=Disposition'] = 'attachment; filename="users_csv" '
-#     writer = csv.writer(response)
-#     writer.writerow(['username','first_name','last_name ','email','branch'])
-#
-#     users = User.objects.all().values_list('username','first_name','last_name ','email','branch')
-#     for user in users:
-#         writer.writerow(user)
-#
-#     return response
 
-
-
-def export_student_csv(request):
-    response=HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="student.csv" '
+def generate_full_report(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="vstoreit_all_students_report.csv" '
     writer = csv.writer(response)
-    writer.writerow(['username','first_name','last_name ','email','branch'])
 
-    students = Student.objects.all().values_list('username','first_name','last_name','email','branch')
+    writer.writerow(['PROFILE DETAILS'])
+    writer.writerow([])
+    writer.writerow(
+        ['USERID', 'FIRST NAME', 'LASTNAME', 'ROLL NO', 'EMAIL', 'ADDMISSION DATE', 'YEAR', 'BRANCH', 'DIV', 'MOBILE'])
+    students = Student.objects.all().values_list('username', 'first_name', 'last_name', 'roll_no', 'email',
+                                                 'date_of_add', 'year',
+                                                 'branch', 'div', 'mobile')
     for student in students:
         writer.writerow(student)
+    writer.writerow([])
+    writer.writerow([])
 
+    writer.writerow(['EDUCATION DETAILS'])
+    writer.writerow([])
+    writer.writerow(
+        ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR', 'STREAM',
+         'COURSE NAME',
+         'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+         'MARKSHEET'])
+    educations = Education.objects.all().values_list('user', 'qua_level', 'country', 'state', 'district',
+                                                     'college_name', 'admission_year', 'stream', 'course_name',
+                                                     'result', 'pass_year', 'completed', 'percentage',
+                                                     'board_university', 'mode', 'attempts', 'upload_marksheet')
+    for education in educations:
+        writer.writerow(education)
+    writer.writerow([])
+    writer.writerow([])
+
+    writer.writerow(['CERTIFICATE DETAILS'])
+    writer.writerow([])
+    writer.writerow(
+        ['USERID', 'TYPE OF CERTIFICATE', 'NAME OF EVENT', 'AUTHORITY OF EVENT', 'DATE OF EVENT',
+         'DESCRIPTION OF EVENT', 'CERTIFICATE'])
+    certificates = Certificate.objects.all().values_list('user', 'type_of_cert', 'name_of_event', 'auth_of_event',
+                                                         'date_of_event', 'desc_of_event', 'upload_cert')
+    for certificate in certificates:
+        writer.writerow(certificate)
 
     return response
+
+
+def generate_filter_report(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="vstoreit_filter_students_report.csv" '
+    writer = csv.writer(response)
+    if request.method == 'POST':
+        fromdate = request.POST.get('fromdate')
+        todate = request.POST.get('todate')
+        CB = request.POST.getlist('CB')
+
+        writer.writerow(['INFORMATION TECHNOLOGY'])
+        writer.writerow([])
+        if 'Information Technology' in CB:
+            writer.writerow(['PROFILE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'FIRST NAME', 'LASTNAME', 'ROLL NO', 'EMAIL', 'ADDMISSION DATE', 'YEAR', 'BRANCH', 'DIV',
+                 'MOBILE'])
+            students = Student.objects.filter(branch='INFT').values_list('username', 'first_name', 'last_name',
+                                                                         'roll_no', 'email', 'date_of_add',
+                                                                         'year',
+                                                                         'branch', 'div', 'mobile').filter(
+                date_of_add__range=(fromdate, todate))
+
+            for student in students:
+                writer.writerow(student)
+
+            writer.writerow([])
+            writer.writerow(['EDUCATION DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
+                 'STREAM',
+                 'COURSE NAME',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'MARKSHEET'])
+            for student in students:
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                                                                                      'state', 'district',
+                                                                                      'college_name', 'admission_year',
+                                                                                      'stream', 'course_name',
+                                                                                      'result', 'pass_year',
+                                                                                      'completed', 'percentage',
+                                                                                      'board_university', 'mode',
+                                                                                      'attempts', 'upload_marksheet')
+                for education in educations:
+                    writer.writerow(education)
+
+            writer.writerow([])
+            writer.writerow(['CERTIFICATE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'TYPE OF CERTIFICATE', 'NAME OF EVENT', 'AUTHORITY OF EVENT', 'DATE OF EVENT',
+                 'DESCRIPTION OF EVENT', 'CERTIFICATE'])
+
+            for student in students:
+                certificates = Certificate.objects.filter(user_id=student[0]).values_list('user', 'type_of_cert',
+                                                                                          'name_of_event',
+                                                                                          'auth_of_event',
+                                                                                          'date_of_event',
+                                                                                          'desc_of_event',
+                                                                                          'upload_cert')
+                for certificate in certificates:
+                    writer.writerow(certificate)
+
+        writer.writerow(['COMPUTER ENGINEERING'])
+        writer.writerow([])
+        if 'Information Technology' in CB:
+            writer.writerow(['PROFILE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'FIRST NAME', 'LASTNAME', 'ROLL NO', 'EMAIL', 'ADDMISSION DATE', 'YEAR', 'BRANCH', 'DIV',
+                 'MOBILE'])
+            students = Student.objects.filter(branch='CMPN').values_list('username', 'first_name', 'last_name',
+                                                                         'roll_no', 'email', 'date_of_add',
+                                                                         'year',
+                                                                         'branch', 'div', 'mobile').filter(
+                date_of_add__range=(fromdate, todate))
+
+            for student in students:
+                writer.writerow(student)
+
+            writer.writerow([])
+            writer.writerow(['EDUCATION DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
+                 'STREAM',
+                 'COURSE NAME',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'MARKSHEET'])
+            for student in students:
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                                                                                      'state', 'district',
+                                                                                      'college_name', 'admission_year',
+                                                                                      'stream', 'course_name',
+                                                                                      'result', 'pass_year',
+                                                                                      'completed', 'percentage',
+                                                                                      'board_university', 'mode',
+                                                                                      'attempts', 'upload_marksheet')
+                for education in educations:
+                    writer.writerow(education)
+
+            writer.writerow([])
+            writer.writerow(['CERTIFICATE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'TYPE OF CERTIFICATE', 'NAME OF EVENT', 'AUTHORITY OF EVENT', 'DATE OF EVENT',
+                 'DESCRIPTION OF EVENT', 'CERTIFICATE'])
+
+            for student in students:
+                certificates = Certificate.objects.filter(user_id=student[0]).values_list('user', 'type_of_cert',
+                                                                                          'name_of_event',
+                                                                                          'auth_of_event',
+                                                                                          'date_of_event',
+                                                                                          'desc_of_event',
+                                                                                          'upload_cert')
+                for certificate in certificates:
+                    writer.writerow(certificate)
+
+        writer.writerow(['ELECTRONICS AND TELECOMMUNICATION ENGINEERING'])
+        writer.writerow([])
+        if 'Information Technology' in CB:
+            writer.writerow(['PROFILE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'FIRST NAME', 'LASTNAME', 'ROLL NO', 'EMAIL', 'ADDMISSION DATE', 'YEAR', 'BRANCH', 'DIV',
+                 'MOBILE'])
+            students = Student.objects.filter(branch='EXTC').values_list('username', 'first_name', 'last_name',
+                                                                         'roll_no', 'email', 'date_of_add',
+                                                                         'year',
+                                                                         'branch', 'div', 'mobile').filter(
+                date_of_add__range=(fromdate, todate))
+
+            for student in students:
+                writer.writerow(student)
+
+            writer.writerow([])
+            writer.writerow(['EDUCATION DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
+                 'STREAM',
+                 'COURSE NAME',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'MARKSHEET'])
+            for student in students:
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                                                                                      'state', 'district',
+                                                                                      'college_name', 'admission_year',
+                                                                                      'stream', 'course_name',
+                                                                                      'result', 'pass_year',
+                                                                                      'completed', 'percentage',
+                                                                                      'board_university', 'mode',
+                                                                                      'attempts', 'upload_marksheet')
+                for education in educations:
+                    writer.writerow(education)
+
+            writer.writerow([])
+            writer.writerow(['CERTIFICATE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'TYPE OF CERTIFICATE', 'NAME OF EVENT', 'AUTHORITY OF EVENT', 'DATE OF EVENT',
+                 'DESCRIPTION OF EVENT', 'CERTIFICATE'])
+
+            for student in students:
+                certificates = Certificate.objects.filter(user_id=student[0]).values_list('user', 'type_of_cert',
+                                                                                          'name_of_event',
+                                                                                          'auth_of_event',
+                                                                                          'date_of_event',
+                                                                                          'desc_of_event',
+                                                                                          'upload_cert')
+                for certificate in certificates:
+                    writer.writerow(certificate)
+
+        writer.writerow(['ELECTRONICS ENGINEERING'])
+        writer.writerow([])
+        if 'Information Technology' in CB:
+            writer.writerow(['PROFILE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'FIRST NAME', 'LASTNAME', 'ROLL NO', 'EMAIL', 'ADDMISSION DATE', 'YEAR', 'BRANCH', 'DIV',
+                 'MOBILE'])
+            students = Student.objects.filter(branch='ETRX').values_list('username', 'first_name', 'last_name',
+                                                                         'roll_no', 'email', 'date_of_add',
+                                                                         'year',
+                                                                         'branch', 'div', 'mobile').filter(
+                date_of_add__range=(fromdate, todate))
+
+            for student in students:
+                writer.writerow(student)
+
+            writer.writerow([])
+            writer.writerow(['EDUCATION DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
+                 'STREAM',
+                 'COURSE NAME',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'MARKSHEET'])
+            for student in students:
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                                                                                      'state', 'district',
+                                                                                      'college_name', 'admission_year',
+                                                                                      'stream', 'course_name',
+                                                                                      'result', 'pass_year',
+                                                                                      'completed', 'percentage',
+                                                                                      'board_university', 'mode',
+                                                                                      'attempts', 'upload_marksheet')
+                for education in educations:
+                    writer.writerow(education)
+
+            writer.writerow([])
+            writer.writerow(['CERTIFICATE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'TYPE OF CERTIFICATE', 'NAME OF EVENT', 'AUTHORITY OF EVENT', 'DATE OF EVENT',
+                 'DESCRIPTION OF EVENT', 'CERTIFICATE'])
+
+            for student in students:
+                certificates = Certificate.objects.filter(user_id=student[0]).values_list('user', 'type_of_cert',
+                                                                                          'name_of_event',
+                                                                                          'auth_of_event',
+                                                                                          'date_of_event',
+                                                                                          'desc_of_event',
+                                                                                          'upload_cert')
+                for certificate in certificates:
+                    writer.writerow(certificate)
+
+        writer.writerow(['BIOMEDICAL ENGINEEERING'])
+        writer.writerow([])
+        if 'Information Technology' in CB:
+            writer.writerow(['PROFILE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'FIRST NAME', 'LASTNAME', 'ROLL NO', 'EMAIL', 'ADDMISSION DATE', 'YEAR', 'BRANCH', 'DIV',
+                 'MOBILE'])
+            students = Student.objects.filter(branch='BIOM').values_list('username', 'first_name', 'last_name',
+                                                                         'roll_no', 'email', 'date_of_add',
+                                                                         'year',
+                                                                         'branch', 'div', 'mobile').filter(
+                date_of_add__range=(fromdate, todate))
+
+            for student in students:
+                writer.writerow(student)
+
+            writer.writerow([])
+            writer.writerow(['EDUCATION DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
+                 'STREAM',
+                 'COURSE NAME',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'MARKSHEET'])
+            for student in students:
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                                                                                      'state', 'district',
+                                                                                      'college_name', 'admission_year',
+                                                                                      'stream', 'course_name',
+                                                                                      'result', 'pass_year',
+                                                                                      'completed', 'percentage',
+                                                                                      'board_university', 'mode',
+                                                                                      'attempts', 'upload_marksheet')
+                for education in educations:
+                    writer.writerow(education)
+
+            writer.writerow([])
+            writer.writerow(['CERTIFICATE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'TYPE OF CERTIFICATE', 'NAME OF EVENT', 'AUTHORITY OF EVENT', 'DATE OF EVENT',
+                 'DESCRIPTION OF EVENT', 'CERTIFICATE'])
+
+            for student in students:
+                certificates = Certificate.objects.filter(user_id=student[0]).values_list('user', 'type_of_cert',
+                                                                                          'name_of_event',
+                                                                                          'auth_of_event',
+                                                                                          'date_of_event',
+                                                                                          'desc_of_event',
+                                                                                          'upload_cert')
+                for certificate in certificates:
+                    writer.writerow(certificate)
+
+        writer.writerow(['MANAGEMENT STUDIES'])
+        writer.writerow([])
+        if 'Management Studies' in CB:
+            writer.writerow(['PROFILE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'FIRST NAME', 'LASTNAME', 'ROLL NO', 'EMAIL', 'ADDMISSION DATE', 'YEAR', 'BRANCH', 'DIV',
+                 'MOBILE'])
+            students = Student.objects.filter(branch='manage').values_list('username', 'first_name', 'last_name',
+                                                                           'roll_no', 'email', 'date_of_add',
+                                                                           'year',
+                                                                           'branch', 'div', 'mobile').filter(
+                date_of_add__range=(fromdate, todate))
+
+            for student in students:
+                writer.writerow(student)
+
+            writer.writerow([])
+            writer.writerow(['EDUCATION DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
+                 'STREAM',
+                 'COURSE NAME',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'MARKSHEET'])
+            for student in students:
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                                                                                      'state', 'district',
+                                                                                      'college_name', 'admission_year',
+                                                                                      'stream', 'course_name',
+                                                                                      'result', 'pass_year',
+                                                                                      'completed', 'percentage',
+                                                                                      'board_university', 'mode',
+                                                                                      'attempts', 'upload_marksheet')
+                for education in educations:
+                    writer.writerow(education)
+
+            writer.writerow([])
+            writer.writerow(['CERTIFICATE DETAILS'])
+            writer.writerow([])
+            writer.writerow(
+                ['USERID', 'TYPE OF CERTIFICATE', 'NAME OF EVENT', 'AUTHORITY OF EVENT', 'DATE OF EVENT',
+                 'DESCRIPTION OF EVENT', 'CERTIFICATE'])
+
+            for student in students:
+                certificates = Certificate.objects.filter(user_id=student[0]).values_list('user', 'type_of_cert',
+                                                                                          'name_of_event',
+                                                                                          'auth_of_event',
+                                                                                          'date_of_event',
+                                                                                          'desc_of_event',
+                                                                                          'upload_cert')
+                for certificate in certificates:
+                    writer.writerow(certificate)
+
+    return response
+
 
 def contactus_done(request):
     return render(request, 'Contactus_done.html')

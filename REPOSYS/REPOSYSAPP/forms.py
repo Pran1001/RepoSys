@@ -1,7 +1,7 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.forms import ModelForm
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.forms import ModelForm
 
 from .models import Student, Certificate, Education
 
@@ -25,11 +25,13 @@ class StudentCertificateForm(ModelForm):
         fields = '__all__'
         exclude = ('user',)
 
+
 class StudentEducationForm(ModelForm):
     class Meta:
         model = Education
         fields = '__all__'
         exclude = ('user',)
+
 
 class ContactForm(forms.Form):
     name = forms.CharField(required=True)

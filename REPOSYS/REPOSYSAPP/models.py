@@ -33,14 +33,17 @@ class Student(models.Model):
     email = models.EmailField(max_length=225, null=True)
     branch = models.CharField(max_length=45, choices=BRANCH, default="")
     year = models.CharField(max_length=30, choices=YEARS, default="")
+    date_of_add = models.DateField()
     div = models.CharField(max_length=30, choices=DIV, default="")
     mobile = models.CharField(max_length=10, null=True)
     profile_image = models.ImageField(upload_to="images/%Y/%m/%d/", null=True, blank=True)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
+
     class Meta:
-        db_table ="Student"
+        db_table = "Student"
+
 
 class Certificate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -50,6 +53,13 @@ class Certificate(models.Model):
     date_of_event = models.DateField()
     desc_of_event = models.CharField(max_length=225, null=True)
     upload_cert = models.FileField(upload_to="certificates/%Y/%m/%d/", null=True, blank=True)
+
+    def __str__(self):
+        return self.user
+
+    class Meta:
+        db_table = "Certificate"
+
 
 class Education(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -70,5 +80,8 @@ class Education(models.Model):
     attempts = models.CharField(max_length=225, null=True)
     upload_marksheet = models.FileField(upload_to="marksheets/%Y/%m/%d/", null=True, blank=True)
 
+    def __str__(self):
+        return self.user
 
-
+    class Meta:
+        db_table = "Education"

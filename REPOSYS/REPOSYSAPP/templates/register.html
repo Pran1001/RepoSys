@@ -20,6 +20,11 @@
 
 
 
+
+
+
+
+
 </style>
 
 <div class="container">
@@ -62,11 +67,11 @@
                                    type="email">
                             <label class="form-label">Email address</label>
                         </div>
-                        <!--                        Profile Photo Input-->
+                        <!--                        Date of Addmission-->
                         <div class="form-outline mb-4">
-                            <input accept="image/*" class="form-control" id="id_profile_image" name="profile_image"
-                                   required="" type="file">
-                            <label class="form-label">Profile Image</label>
+                            <input class="form-control" id="date_of_add" name="date_of_add" required
+                                   type="date">
+                            <label class="form-label">Date of Admission</label>
                         </div>
                         <!-- Password input -->
                         <div class="form-outline mb-4">
@@ -126,6 +131,12 @@
                                    required="" type="password">
                             <label class="form-label">Confirm Password</label>
                         </div>
+                        <!--                        Profile Photo Input-->
+                        <div class="form-outline mb-4">
+                            <input accept="image/*" class="form-control" id="id_profile_image" name="profile_image"
+                                   required="" type="file">
+                            <label class="form-label">Profile Image</label>
+                        </div>
                     </div>
                 </div>
                 {% for message in messages %}
@@ -146,6 +157,11 @@
     var username = {{request.user.username}}
     const username=$("id_first_name").val()
     $("id_username").val()
+
+
+
+
+
 
 
 

@@ -31,85 +31,93 @@
 
 
 
+
 </style>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl-12 col-md-8">
-            <form class="bg-white  rounded-5 shadow-5-strong p-5">
+            <form action="{% url 'generate_filter_report' %}" class="bg-white  rounded-5 shadow-5-strong p-5" method="POST">
+                {% csrf_token %}
                 <h3 class="text-center ">Report Generation</h3>
                 <hr>
                 <div class="form-group row">
                     <div class="col">
                         <label class="col">Branch</label>
                         <div class="col">
-                            <input class="form-check-input" id="inft" type="checkbox" value="Information Technology">
+                            <input class="form-check-input" id="inft" name='CB' type="checkbox"
+                                   value="Information Technology">
                             <label class="form-check-label" for="inft">Information Technology</label>
                         </div>
                         <div class="col">
-                            <input class="form-check-input" id="cmpn" type="checkbox" value="Computer Engineering">
+                            <input class="form-check-input" id="cmpn" name='CB' type="checkbox"
+                                   value="Computer Engineering">
                             <label class="form-check-label" for="cmpn">Computer Engineering</label>
                         </div>
                         <div class="col">
-                            <input class="form-check-input" id="extc" type="checkbox"
+                            <input class="form-check-input" id="extc" name='CB' type="checkbox"
                                    value="Electronics and Telecommunication Engineering">
                             <label class="form-check-label" for="extc">Electronics and Telecommunication
                                 Engineering</label>
                         </div>
                         <div class="col">
-                            <input class="form-check-input" id="etrx" type="checkbox" value="Electronics Engineering">
+                            <input class="form-check-input" id="etrx" name='CB' type="checkbox"
+                                   value="Electronics Engineering">
                             <label class="form-check-label" for="etrx">Electronics Engineering</label>
                         </div>
                         <div class="col">
-                            <input class="form-check-input" id="biom" type="checkbox" value="Biomedical Engineering">
+                            <input class="form-check-input" id="biom" name='CB' type="checkbox"
+                                   value="Biomedical Engineering">
                             <label class="form-check-label" for="biom">Biomedical Engineering</label>
                         </div>
                         <div class="col">
-                            <input class="form-check-input" id="manage" type="checkbox" value="Management Studies">
+                            <input class="form-check-input" id="manage" name='CB' type="checkbox"
+                                   value="Management Studies">
                             <label class="form-check-label" for="manage">Management Studies</label>
                         </div>
                     </div>
                     <div class="col">
-                        <label class="col">Date</label>
+                        <label class="col">Date of Addmission</label>
                         <div class="col">
                             <label class="form-date-label" for="fromdate">From</label>
-                            <input class="form-date-input" id="fromdate" type="date">
+                            <input class="form-date-input" id="fromdate" name='fromdate' type="date" required>
                         </div>
                         <div class="col">
                             <label class="form-date-label" for="todate">To</label>
-                            <input class="form-date-input" id="todate" type="date">
+                            <input class="form-date-input" id="todate" name='todate' type="date" required>
                         </div>
                     </div>
                     <div class="col">
                         <label class="col">Year</label>
                         <div class="col">
-                            <input class="form-check-input" id="fe" type="checkbox">
+                            <input class="form-check-input" value='FE' id="fe" name='CB' type="checkbox">
                             <label class="form-check-label" for="fe">FE</label>
                         </div>
                         <div class="col">
-                            <input class="form-check-input" id="se" type="checkbox">
+                            <input class="form-check-input" value='SE' id="se" name='CB' type="checkbox">
                             <label class="form-check-label" for="se">SE</label>
                         </div>
                         <div class="col">
-                            <input class="form-check-input" id="te" type="checkbox">
+                            <input class="form-check-input" value='TE' id="te" name='CB' type="checkbox">
                             <label class="form-check-label" for="te">TE</label>
                         </div>
                         <div class="col">
-                            <input class="form-check-input" id="be" type="checkbox">
+                            <input class="form-check-input" value='BE' id="be" name='CB' type="checkbox">
                             <label class="form-check-label" for="be">BE</label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-primary btn-block" type="submit" >Clear All Filters</button>
+                        <a class="btn btn-primary btn-block" role="button" href="" >Clear All Filters</a>
                     </div>
                     <div class="col">
-                        <button class="btn btn-primary btn-block" type="submit">Generate Report</button>
+                        <button class="btn btn-primary btn-block" type="submit" role="button"
+                           target="_blank">Generate Filtered Report</button>
                     </div>
                     <div class="col">
-<!--                        <button class="btn btn-primary btn-block" type="submit">Generate Full Report</button>-->
-                        <a class="btn btn-primary btn-block " href="/export_student_csv" target="_blank" role="button">Generate Full Report</a>
+                        <a class="btn btn-primary btn-block " href="/generate_full_report" role="button"
+                           target="_blank">Generate Full Report</a>
                     </div>
                 </div>
             </form>
