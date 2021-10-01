@@ -238,13 +238,12 @@ def generate_full_report(request):
 def generate_filter_report(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="vstoreit_filter_students_report.csv" '
-    writer = csv.writer(response)
     if request.method == 'POST':
         fromdate = request.POST.get('fromdate')
         todate = request.POST.get('todate')
         CB = request.POST.getlist('CB')
-
-        writer.writerow(['INFORMATION TECHNOLOGY -->'])
+        writer = csv.writer(response)
+        writer.writerow(['INFORMATION TECHNOLOGY'])
         writer.writerow([])
         if 'Information Technology' in CB:
             writer.writerow(['PROFILE DETAILS'])
@@ -268,17 +267,21 @@ def generate_filter_report(request):
                 ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
                  'STREAM',
                  'COURSE NAME',
-                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE',
+                 'ATTEMPTS TAKEN',
                  'MARKSHEET'])
             for student in students:
-                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level',
+                                                                                      'country',
                                                                                       'state', 'district',
-                                                                                      'college_name', 'admission_year',
+                                                                                      'college_name',
+                                                                                      'admission_year',
                                                                                       'stream', 'course_name',
                                                                                       'result', 'pass_year',
                                                                                       'completed', 'percentage',
                                                                                       'board_university', 'mode',
-                                                                                      'attempts', 'upload_marksheet')
+                                                                                      'attempts',
+                                                                                      'upload_marksheet')
                 for education in educations:
                     writer.writerow(education)
 
@@ -299,9 +302,9 @@ def generate_filter_report(request):
                 for certificate in certificates:
                     writer.writerow(certificate)
 
-        writer.writerow(['COMPUTER ENGINEERING -->'])
+        writer.writerow(['COMPUTER ENGINEERING'])
         writer.writerow([])
-        if 'Information Technology' in CB:
+        if 'Computer Engineering' in CB:
             writer.writerow(['PROFILE DETAILS'])
             writer.writerow([])
             writer.writerow(
@@ -312,10 +315,8 @@ def generate_filter_report(request):
                                                                          'year',
                                                                          'branch', 'div', 'mobile').filter(
                 date_of_add__range=(fromdate, todate))
-
             for student in students:
                 writer.writerow(student)
-
             writer.writerow([])
             writer.writerow(['EDUCATION DETAILS'])
             writer.writerow([])
@@ -323,17 +324,21 @@ def generate_filter_report(request):
                 ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
                  'STREAM',
                  'COURSE NAME',
-                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE',
+                 'ATTEMPTS TAKEN',
                  'MARKSHEET'])
             for student in students:
-                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level',
+                                                                                      'country',
                                                                                       'state', 'district',
-                                                                                      'college_name', 'admission_year',
+                                                                                      'college_name',
+                                                                                      'admission_year',
                                                                                       'stream', 'course_name',
                                                                                       'result', 'pass_year',
                                                                                       'completed', 'percentage',
                                                                                       'board_university', 'mode',
-                                                                                      'attempts', 'upload_marksheet')
+                                                                                      'attempts',
+                                                                                      'upload_marksheet')
                 for education in educations:
                     writer.writerow(education)
 
@@ -356,7 +361,7 @@ def generate_filter_report(request):
 
         writer.writerow(['ELECTRONICS AND TELECOMMUNICATION ENGINEERING'])
         writer.writerow([])
-        if 'Information Technology' in CB:
+        if 'Electronics and Telecommunication Engineering' in CB:
             writer.writerow(['PROFILE DETAILS'])
             writer.writerow([])
             writer.writerow(
@@ -378,17 +383,21 @@ def generate_filter_report(request):
                 ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
                  'STREAM',
                  'COURSE NAME',
-                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE',
+                 'ATTEMPTS TAKEN',
                  'MARKSHEET'])
             for student in students:
-                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level',
+                                                                                      'country',
                                                                                       'state', 'district',
-                                                                                      'college_name', 'admission_year',
+                                                                                      'college_name',
+                                                                                      'admission_year',
                                                                                       'stream', 'course_name',
                                                                                       'result', 'pass_year',
                                                                                       'completed', 'percentage',
                                                                                       'board_university', 'mode',
-                                                                                      'attempts', 'upload_marksheet')
+                                                                                      'attempts',
+                                                                                      'upload_marksheet')
                 for education in educations:
                     writer.writerow(education)
 
@@ -411,7 +420,7 @@ def generate_filter_report(request):
 
         writer.writerow(['ELECTRONICS ENGINEERING'])
         writer.writerow([])
-        if 'Information Technology' in CB:
+        if 'Electronics Engineering' in CB:
             writer.writerow(['PROFILE DETAILS'])
             writer.writerow([])
             writer.writerow(
@@ -433,17 +442,21 @@ def generate_filter_report(request):
                 ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
                  'STREAM',
                  'COURSE NAME',
-                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE',
+                 'ATTEMPTS TAKEN',
                  'MARKSHEET'])
             for student in students:
-                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level',
+                                                                                      'country',
                                                                                       'state', 'district',
-                                                                                      'college_name', 'admission_year',
+                                                                                      'college_name',
+                                                                                      'admission_year',
                                                                                       'stream', 'course_name',
                                                                                       'result', 'pass_year',
                                                                                       'completed', 'percentage',
                                                                                       'board_university', 'mode',
-                                                                                      'attempts', 'upload_marksheet')
+                                                                                      'attempts',
+                                                                                      'upload_marksheet')
                 for education in educations:
                     writer.writerow(education)
 
@@ -464,9 +477,9 @@ def generate_filter_report(request):
                 for certificate in certificates:
                     writer.writerow(certificate)
 
-        writer.writerow(['BIOMEDICAL ENGINEEERING >'])
+        writer.writerow(['BIOMEDICAL ENGINEEERING'])
         writer.writerow([])
-        if 'Information Technology' in CB:
+        if 'Biomedical Engineering' in CB:
             writer.writerow(['PROFILE DETAILS'])
             writer.writerow([])
             writer.writerow(
@@ -488,17 +501,21 @@ def generate_filter_report(request):
                 ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
                  'STREAM',
                  'COURSE NAME',
-                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE',
+                 'ATTEMPTS TAKEN',
                  'MARKSHEET'])
             for student in students:
-                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level',
+                                                                                      'country',
                                                                                       'state', 'district',
-                                                                                      'college_name', 'admission_year',
+                                                                                      'college_name',
+                                                                                      'admission_year',
                                                                                       'stream', 'course_name',
                                                                                       'result', 'pass_year',
                                                                                       'completed', 'percentage',
                                                                                       'board_university', 'mode',
-                                                                                      'attempts', 'upload_marksheet')
+                                                                                      'attempts',
+                                                                                      'upload_marksheet')
                 for education in educations:
                     writer.writerow(education)
 
@@ -527,7 +544,7 @@ def generate_filter_report(request):
             writer.writerow(
                 ['USERID', 'FIRST NAME', 'LASTNAME', 'ROLL NO', 'EMAIL', 'ADDMISSION DATE', 'YEAR', 'BRANCH', 'DIV',
                  'MOBILE'])
-            students = Student.objects.filter(branch='MNGT').values_list('username', 'first_name', 'last_name',
+            students = Student.objects.filter(branch='manage').values_list('username', 'first_name', 'last_name',
                                                                            'roll_no', 'email', 'date_of_add',
                                                                            'year',
                                                                            'branch', 'div', 'mobile').filter(
@@ -543,17 +560,21 @@ def generate_filter_report(request):
                 ['USERID', 'QUALIFICATION LEVEL', 'COUNTRY', 'STATE', 'DISTRICT', 'COLLEGE NAME', 'ADDMISSION YEAR',
                  'STREAM',
                  'COURSE NAME',
-                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE', 'ATTEMPTS TAKEN',
+                 'RESULT', 'PASS YEAR', 'COMPLETED', 'PERCENTAGE', 'BOARD/UNIVERSITY NAME', 'MODE',
+                 'ATTEMPTS TAKEN',
                  'MARKSHEET'])
             for student in students:
-                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level', 'country',
+                educations = Education.objects.filter(user_id=student[0]).values_list('user', 'qua_level',
+                                                                                      'country',
                                                                                       'state', 'district',
-                                                                                      'college_name', 'admission_year',
+                                                                                      'college_name',
+                                                                                      'admission_year',
                                                                                       'stream', 'course_name',
                                                                                       'result', 'pass_year',
                                                                                       'completed', 'percentage',
                                                                                       'board_university', 'mode',
-                                                                                      'attempts', 'upload_marksheet')
+                                                                                      'attempts',
+                                                                                      'upload_marksheet')
                 for education in educations:
                     writer.writerow(education)
 
