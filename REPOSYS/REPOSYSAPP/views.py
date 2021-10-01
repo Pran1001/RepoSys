@@ -244,7 +244,7 @@ def generate_filter_report(request):
         todate = request.POST.get('todate')
         CB = request.POST.getlist('CB')
 
-        writer.writerow(['INFORMATION TECHNOLOGY'])
+        writer.writerow(['INFORMATION TECHNOLOGY -->'])
         writer.writerow([])
         if 'Information Technology' in CB:
             writer.writerow(['PROFILE DETAILS'])
@@ -299,7 +299,7 @@ def generate_filter_report(request):
                 for certificate in certificates:
                     writer.writerow(certificate)
 
-        writer.writerow(['COMPUTER ENGINEERING'])
+        writer.writerow(['COMPUTER ENGINEERING -->'])
         writer.writerow([])
         if 'Information Technology' in CB:
             writer.writerow(['PROFILE DETAILS'])
@@ -464,7 +464,7 @@ def generate_filter_report(request):
                 for certificate in certificates:
                     writer.writerow(certificate)
 
-        writer.writerow(['BIOMEDICAL ENGINEEERING'])
+        writer.writerow(['BIOMEDICAL ENGINEEERING >'])
         writer.writerow([])
         if 'Information Technology' in CB:
             writer.writerow(['PROFILE DETAILS'])
@@ -527,7 +527,7 @@ def generate_filter_report(request):
             writer.writerow(
                 ['USERID', 'FIRST NAME', 'LASTNAME', 'ROLL NO', 'EMAIL', 'ADDMISSION DATE', 'YEAR', 'BRANCH', 'DIV',
                  'MOBILE'])
-            students = Student.objects.filter(branch='manage').values_list('username', 'first_name', 'last_name',
+            students = Student.objects.filter(branch='MNGT').values_list('username', 'first_name', 'last_name',
                                                                            'roll_no', 'email', 'date_of_add',
                                                                            'year',
                                                                            'branch', 'div', 'mobile').filter(
